@@ -102,6 +102,78 @@ Par exemple :
 
 ---
 
+# Un exemple concret : morfBeacon
+
+Pour rendre ces notions tangibles, prenons le contrat le plus partagé de
+l'écosystème : la découverte via morfBeacon.
+
+Il réunit à lui seul les trois types précédents.
+
+## La présence (contrat réseau + format)
+
+Chaque service diffuse périodiquement, en UDP sur le réseau local, un petit
+datagramme JSON qui annonce sa présence :
+
+```json
+{
+  "proto": "morfbeacon/1",
+  "app": "morfSensor",
+  "host": "salon-pi",
+  "version": "1.4.2",
+  "state": "ok",
+  "status_port": 8788,
+  "instance": "morfSensor@salon-pi",
+  "capabilities": ["sensors"],
+  "ts": 1785000000
+}
+```
+
+Le message est volontairement **court** : il est émis souvent.
+
+## Le détail (contrat d'API)
+
+Un consommateur intéressé interroge alors, à la demande, l'endpoint HTTP
+`/status` du service, sur le port annoncé :
+
+```json
+{
+  "app": "morfSensor",
+  "version": "1.4.2",
+  "state": "ok",
+  "metrics": { "probes": 3 },
+  "api": {
+    "endpoints": [
+      { "method": "GET", "path": "/api/readings", "summary": "dernières mesures" }
+    ]
+  }
+}
+```
+
+Le détail peut être **riche** : il est lu rarement.
+
+## Le comportement attendu
+
+Le contrat impose enfin quelques règles de comportement :
+
+- un service **annonce** sa présence tant qu'il fonctionne ;
+- il **répond** à `/status` et à `/healthz` ;
+- un consommateur **cherche une capacité** (`sensors`), jamais un nom : le nom
+  peut être renommé par l'utilisateur, la capacité non.
+
+## Ce que garantit ce contrat
+
+Rien n'est dit de *comment* le service est écrit.
+
+Un capteur en C++, un autre en Python ou un ESP32 peuvent tous l'honorer.
+
+Tant que le format du datagramme et la sémantique de `/status` restent stables, un
+superviseur écrit aujourd'hui continuera de fonctionner avec un service réécrit
+demain.
+
+C'est exactement ce que promet un contrat.
+
+---
+
 # Les contrats sont publics
 
 Tous les contrats de morfSystem doivent être documentés.

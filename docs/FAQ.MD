@@ -1,4 +1,4 @@
-    # Questions fréquentes
+# Questions fréquentes
 
 Cette FAQ répond aux questions qui reviennent le plus souvent à propos de l'architecture de morfSystem.
 

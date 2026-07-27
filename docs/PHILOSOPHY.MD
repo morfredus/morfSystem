@@ -1,6 +1,6 @@
-# L'architecture de morfSystem
+# La philosophie de morfSystem
 
-L'architecture de morfSystem repose sur une idée simple :
+La philosophie de morfSystem repose sur une idée simple :
 
 > **Les composants collaborent parce qu'ils partagent des règles communes, pas parce qu'ils dépendent les uns des autres.**
 

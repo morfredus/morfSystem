@@ -112,9 +112,9 @@ Chaque dépôt explique :
 
 Commencez par lire :
 
-- philosophy.md
-- architecture.md
-- architecture-principles.md
+- [Philosophie](PHILOSOPHY.md)
+- [Architecture](ARCHITECTURE.md)
+- [Principes d'architecture](ARCHITECTURE-PRINCIPLES.md)
 
 Ils présentent les concepts fondamentaux.
 
@@ -124,9 +124,10 @@ Ils présentent les concepts fondamentaux.
 
 Nous vous recommandons ensuite de lire :
 
-- development-rules.md
-- governance.md
-- project-lifecycle.md
+- [Contribuer](CONTRIBUTING.md)
+- [Règles de développement](DEVELOPMENT-RULES.md)
+- [Gouvernance](GOVERNANCE.md)
+- [Cycle de vie des projets](PROJECT-LIFECYCLE.md)
 
 Ces documents décrivent les conventions utilisées dans tout l'écosystème.
 
