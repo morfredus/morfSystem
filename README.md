@@ -1,217 +1,221 @@
 # morfSystem
 
-> **Un écosystème de services autonomes, libres et interopérables, conçu pour fonctionner d'abord chez son utilisateur, pas chez son éditeur.**
+> **An ecosystem of autonomous, free and interoperable services, designed to run first at its user's home, not at its vendor's.**
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue)](CHANGELOG.md)
 [![Doc](https://img.shields.io/badge/type-documentation-informational)](docs/)
 [![License](https://img.shields.io/badge/License-GPL--3.0--only-blue)](LICENSE)
 
+*Read in another language: **English** (this document) · [Français](README.fr.md).*
+
+> The reference documentation itself lives in `docs/` and is currently written in French.
+
 ---
 
 # Documentation
 
-Ce dépôt constitue la documentation de référence de l'écosystème morfSystem.
+This repository is the reference documentation of the morfSystem ecosystem.
 
-Si vous découvrez le projet, nous vous recommandons de suivre l'ordre de lecture suivant :
+If you are discovering the project, we recommend the following reading order:
 
-## Découvrir
+## Discover
 
-- 📖 [Bien démarrer](docs/GETTING-STARTED.md)
-- 📖 [Philosophie](docs/PHILOSOPHY.md) — *pourquoi* l'écosystème est conçu ainsi
-- 📖 [Architecture](docs/ARCHITECTURE.md) — *comment* les pièces s'assemblent
-- 📖 [Penser en morfSystem](docs/THINKING-IN-MORFSYSTEM.md)
+- 📖 [Getting started](docs/GETTING-STARTED.md)
+- 📖 [Philosophy](docs/PHILOSOPHY.md) — *why* the ecosystem is designed this way
+- 📖 [Architecture](docs/ARCHITECTURE.md) — *how* the pieces fit together
+- 📖 [Thinking in morfSystem](docs/THINKING-IN-MORFSYSTEM.md)
 
-## Comprendre
+## Understand
 
-- 📖 [Principes d'architecture](docs/ARCHITECTURE-PRINCIPLES.md)
-- 📖 [Les contrats](docs/CONTRACTS.md)
-- 📖 [Décisions de conception](docs/DESIGN-DECISIONS.md)
-- 📖 [Cadre de décision](docs/DECISION-FRAMEWORK.md)
-- 📖 [Règles de développement](docs/DEVELOPMENT-RULES.md)
-- 📖 [Gestion des données locales](docs/FILESYSTEM.md)
-- 📖 [Gouvernance](docs/GOVERNANCE.md)
-- 📖 [Cycle de vie des projets](docs/PROJECT-LIFECYCLE.md)
+- 📖 [Architecture principles](docs/ARCHITECTURE-PRINCIPLES.md)
+- 📖 [Contracts](docs/CONTRACTS.md)
+- 📖 [Design decisions](docs/DESIGN-DECISIONS.md)
+- 📖 [Decision framework](docs/DECISION-FRAMEWORK.md)
+- 📖 [Development rules](docs/DEVELOPMENT-RULES.md)
+- 📖 [Local data layout](docs/FILESYSTEM.md)
+- 📖 [Governance](docs/GOVERNANCE.md)
+- 📖 [Project lifecycle](docs/PROJECT-LIFECYCLE.md)
 
-## Participer
+## Contribute
 
-- 📖 [Contribuer](docs/CONTRIBUTING.md) — comment participer, et les interdits
-- 📖 [Checklist de création d'un projet](docs/checklists/NEW-PROJECT.md)
+- 📖 [Contributing](docs/CONTRIBUTING.md) — how to take part, and the hard rules
+- 📖 [New-project checklist](docs/checklists/NEW-PROJECT.md)
 
-## Référence
+## Reference
 
-- 📖 [Écosystème](docs/ECOSYSTEM.md)
-- 📖 [Glossaire](docs/GLOSSARY.md) — les termes clés en un coup d'œil
-- 📖 [Feuille de route](docs/ROADMAP.md)
-- 📖 [Ce que morfSystem n'est pas](docs/NON-GOALS.md)
+- 📖 [Ecosystem](docs/ECOSYSTEM.md)
+- 📖 [Glossary](docs/GLOSSARY.md) — the key terms at a glance
+- 📖 [Roadmap](docs/ROADMAP.md)
+- 📖 [What morfSystem is not](docs/NON-GOALS.md)
 - 📖 [FAQ](docs/FAQ.md)
 
 ---
 
-## Pourquoi morfSystem ?
+## Why morfSystem?
 
-morfSystem n'est pas né de la volonté de créer une nouvelle plateforme, un nouveau framework ou une nouvelle suite logicielle.
+morfSystem was not born from the wish to create a new platform, a new framework or a new software suite.
 
-Il est né d'un constat.
+It was born from an observation.
 
-Au fil des années, de nombreux projets personnels ont vu le jour : outils de supervision, capteurs connectés, applications de bureau, services réseau, utilitaires système...
+Over the years, many personal projects appeared: supervision tools, connected sensors, desktop applications, network services, system utilities...
 
-Chaque projet répondait à un besoin précis.
+Each project answered a precise need.
 
-Chaque projet fonctionnait.
+Each project worked.
 
-Mais chacun réinventait une partie des mêmes mécanismes : découverte réseau, supervision, configuration, mises à jour, communication entre applications, déploiement...
+But each one reinvented part of the same mechanisms: network discovery, supervision, configuration, updates, communication between applications, deployment...
 
-La solution la plus simple aurait été de tout fusionner dans une seule application.
+The simplest solution would have been to merge everything into a single application.
 
-Ce choix a volontairement été rejeté.
+That choice was deliberately rejected.
 
-À l'inverse, la tendance actuelle consiste souvent à découper les applications en une multitude de microservices fortement dépendants les uns des autres, au point qu'aucun ne peut réellement fonctionner seul.
+Conversely, the current trend often consists of splitting applications into a multitude of tightly coupled microservices, to the point that none can really run on its own.
 
-Ce choix a également été rejeté.
+That choice was rejected too.
 
-morfSystem est né entre ces deux extrêmes.
+morfSystem was born between these two extremes.
 
-L'objectif n'est pas de construire une plateforme.
+The goal is not to build a platform.
 
-L'objectif est de construire un écosystème cohérent.
+The goal is to build a coherent ecosystem.
 
-Chaque composant possède une responsabilité clairement définie.
+Each component has a clearly defined responsibility.
 
-Chaque composant reste utilisable indépendamment.
+Each component remains usable on its own.
 
-Lorsqu'ils sont présents ensemble sur le même réseau, ils collaborent naturellement grâce à des contrats communs plutôt qu'à des dépendances imposées.
+When they are present together on the same network, they collaborate naturally through shared contracts rather than through imposed dependencies.
 
-Cette différence est fondamentale.
+This difference is fundamental.
 
-morfSystem n'impose jamais un composant lorsqu'un autre est installé.
+morfSystem never forces one component upon you because another is installed.
 
-Il propose une coopération, jamais une obligation.
+It offers cooperation, never an obligation.
 
-> Pour comprendre les motivations ayant conduit à cette architecture, consultez la **[Philosophie](docs/PHILOSOPHY.md)**.
-
----
-
-# Ce que morfSystem est
-
-morfSystem est un ensemble de logiciels libres partageant une même philosophie de conception.
-
-Il ne s'agit pas d'une suite logicielle monolithique.
-
-Il ne s'agit pas d'un système d'exploitation.
-
-Il ne s'agit pas d'un framework.
-
-Chaque projet possède son propre dépôt, son propre cycle de développement, sa propre documentation et sa propre responsabilité.
-
-Les composants partagent uniquement ce qui doit réellement être partagé :
-
-- des conventions ;
-- des contrats d'échange ;
-- des protocoles documentés ;
-- une philosophie commune.
-
-Le reste appartient à chaque projet.
-
-Cette approche permet à chaque composant d'évoluer sans remettre en cause l'ensemble de l'écosystème.
-
-> L'organisation générale est présentée dans **[Architecture](docs/ARCHITECTURE.md)**.
+> To understand the motivations behind this architecture, read the **[Philosophy](docs/PHILOSOPHY.md)**.
 
 ---
 
-# Ce que morfSystem n'est pas
+# What morfSystem is
 
-Comprendre ce que morfSystem refuse est aussi important que comprendre ce qu'il propose.
+morfSystem is a set of free software programs sharing the same design philosophy.
 
-morfSystem n'est pas un framework : il n'impose aucune manière de développer, seulement des principes.
+It is not a monolithic software suite.
 
-Ce n'est pas une suite logicielle : on n'installe que les composants dont on a besoin.
+It is not an operating system.
 
-Ce n'est pas un système d'exploitation : il respecte les différences entre plateformes plutôt que de les masquer.
+It is not a framework.
 
-Ce n'est pas *cloud first* : le fonctionnement nominal est local, l'accès distant reste une extension.
+Each project has its own repository, its own development cycle, its own documentation and its own responsibility.
 
-Ce n'est pas un orchestrateur : aucun composant central ne pilote les autres.
+Components share only what genuinely needs to be shared:
 
-> Cette vision est développée dans **[Ce que morfSystem n'est pas](docs/NON-GOALS.md)**.
+- conventions;
+- exchange contracts;
+- documented protocols;
+- a common philosophy.
 
----
+Everything else belongs to each project.
 
-# Les principes fondateurs
+This approach lets each component evolve without calling the whole ecosystem into question.
 
-## Une responsabilité par service
-
-Chaque projet existe pour une seule raison, résumable en une phrase. Un nouveau besoin donne un nouveau projet, jamais un projet plus compliqué.
-
-## L'autonomie avant tout
-
-Un composant doit être utile même seul. La coopération avec les autres est une amélioration, jamais une condition de fonctionnement.
-
-## Le réseau local est la vérité
-
-Les services sont conçus pour fonctionner sur le réseau de leur utilisateur, sans aucune infrastructure distante. L'accès externe est une extension possible, jamais une obligation.
-
-## Les contrats plutôt que les connaissances
-
-Les composants collaborent par leurs interfaces publiques, jamais par leur fonctionnement interne. Une implémentation peut être réécrite ; le contrat, lui, reste stable.
-
-## Les standards plutôt que la magie
-
-Quand un standard ouvert répond au besoin (HTTP, JSON, UDP, fichiers texte), il est privilégié. Le recours à une technologie spécifique doit toujours être justifié.
-
-## La simplicité avant l'effet de mode
-
-On résout le problème avec le minimum de complexité nécessaire. Une solution éprouvée est souvent préférable à une solution récente mais plus complexe.
-
-> Les principes sont détaillés dans **[Principes d'architecture](docs/ARCHITECTURE-PRINCIPLES.md)**.
+> The overall organisation is presented in **[Architecture](docs/ARCHITECTURE.md)**.
 
 ---
 
-# Une gouvernance commune
+# What morfSystem is not
 
-Bien que les composants restent indépendants, ils partagent un ensemble de conventions.
+Understanding what morfSystem refuses is as important as understanding what it offers.
 
-Une responsabilité clairement identifiée, une API publique lorsqu'un service communique, une découverte réseau via morfBeacon, des journaux exploitables, un numéro de version explicite, une licence libre : ces conventions évoluent peu et constituent la stabilité de l'écosystème.
+morfSystem is not a framework: it imposes no way of developing, only principles.
 
-Les outils communs, comme morfTools ou morfBeacon, facilitent cette cohérence sans devenir des dépendances obligatoires.
+It is not a software suite: you install only the components you need.
 
-> Les conventions communes sont décrites dans **[Gouvernance](docs/GOVERNANCE.md)** et **[Règles de développement](docs/DEVELOPMENT-RULES.md)**.
+It is not an operating system: it respects the differences between platforms rather than hiding them.
 
----
+It is not *cloud first*: the nominal operation is local, remote access remains an extension.
 
-# Une philosophie avant une technologie
+It is not an orchestrator: no central component drives the others.
 
-morfSystem ne cherche pas à suivre les tendances.
-
-Il cherche à construire un ensemble cohérent, robuste et compréhensible.
-
-Les langages, les bibliothèques et les plateformes ne sont que des moyens.
-
-Un composant se juge à sa responsabilité, jamais à sa pile technique.
-
-C'est pourquoi une technologie n'est jamais adoptée simplement parce qu'elle est récente.
-
-Avant d'ajouter une fonctionnalité, il cherche à préserver la simplicité.
-
-C'est cette philosophie qui relie l'ensemble des projets.
-
-Bien davantage que leur code.
+> This vision is developed in **[What morfSystem is not](docs/NON-GOALS.md)**.
 
 ---
 
-# Pour aller plus loin
+# The founding principles
 
-Le dépôt **morfSystem** décrit les principes communs de l'écosystème.
+## One responsibility per service
 
-Chaque projet possède ensuite sa propre documentation dédiée.
+Each project exists for a single reason, expressible in one sentence. A new need yields a new project, never a more complicated one.
 
-Si vous souhaitez approfondir votre découverte, nous vous recommandons l'ordre de lecture suivant :
+## Autonomy first
 
-1. **[Bien démarrer](docs/GETTING-STARTED.md)**
-2. **[Philosophie](docs/PHILOSOPHY.md)**
+A component must be useful even on its own. Cooperation with others is an improvement, never a condition for it to work.
+
+## The local network is the truth
+
+Services are designed to run on their user's network, with no remote infrastructure. External access is a possible extension, never an obligation.
+
+## Contracts over knowledge
+
+Components collaborate through their public interfaces, never through their internal workings. An implementation can be rewritten; the contract stays stable.
+
+## Standards over magic
+
+When an open standard answers the need (HTTP, JSON, UDP, text files), it is preferred. Reaching for a specific technology must always be justified.
+
+## Simplicity over hype
+
+We solve the problem with the minimum necessary complexity. A proven solution is often better than a newer but more complex one.
+
+> The principles are detailed in **[Architecture principles](docs/ARCHITECTURE-PRINCIPLES.md)**.
+
+---
+
+# Shared governance
+
+Although the components stay independent, they share a set of conventions.
+
+A clearly identified responsibility, a public API when a service communicates, network discovery through morfBeacon, usable logs, an explicit version number, a free licence: these conventions change little and form the stability of the ecosystem.
+
+The common tools, such as morfTools or morfBeacon, help this coherence without becoming mandatory dependencies.
+
+> The shared conventions are described in **[Governance](docs/GOVERNANCE.md)** and **[Development rules](docs/DEVELOPMENT-RULES.md)**.
+
+---
+
+# A philosophy before a technology
+
+morfSystem does not try to follow trends.
+
+It tries to build a coherent, robust and understandable whole.
+
+Languages, libraries and platforms are only means.
+
+A component is judged by its responsibility, never by its technical stack.
+
+That is why a technology is never adopted simply because it is recent.
+
+Before adding a feature, it seeks to preserve simplicity.
+
+It is this philosophy that ties all the projects together.
+
+Far more than their code.
+
+---
+
+# Going further
+
+The **morfSystem** repository describes the common principles of the ecosystem.
+
+Each project then has its own dedicated documentation.
+
+If you want to dig deeper, we recommend the following reading order:
+
+1. **[Getting started](docs/GETTING-STARTED.md)**
+2. **[Philosophy](docs/PHILOSOPHY.md)**
 3. **[Architecture](docs/ARCHITECTURE.md)**
-4. **[Principes d'architecture](docs/ARCHITECTURE-PRINCIPLES.md)**
-5. **[Règles de développement](docs/DEVELOPMENT-RULES.md)**
-6. **[Gouvernance](docs/GOVERNANCE.md)**
-7. **[Écosystème](docs/ECOSYSTEM.md)**
+4. **[Architecture principles](docs/ARCHITECTURE-PRINCIPLES.md)**
+5. **[Development rules](docs/DEVELOPMENT-RULES.md)**
+6. **[Governance](docs/GOVERNANCE.md)**
+7. **[Ecosystem](docs/ECOSYSTEM.md)**
 
-Vous souhaitez **participer** ? Lisez **[Contribuer](docs/CONTRIBUTING.md)** : comment proposer un composant, les conventions à suivre et les interdits.
+Want to **take part**? Read **[Contributing](docs/CONTRIBUTING.md)**: how to propose a component, the conventions to follow and the hard rules.
