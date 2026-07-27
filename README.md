@@ -4,6 +4,35 @@
 
 ---
 
+# Documentation
+
+Ce dépôt constitue la documentation de référence de l'écosystème morfSystem.
+
+Si vous découvrez le projet, nous vous recommandons de suivre l'ordre de lecture suivant :
+
+## Découvrir
+
+- 📖 [Bien démarrer](docs/getting-started.md)
+- 📖 [Philosophie](docs/philosophy.md)
+- 📖 [Architecture](docs/architecture.md)
+
+## Comprendre
+
+- 📖 [Principes d'architecture](docs/architecture-principles.md)
+- 📖 [Règles de développement](docs/development-rules.md)
+- 📖 [Décisions de conception](docs/design-decisions.md)
+- 📖 [Gouvernance](docs/governance.md)
+- 📖 [Cycle de vie des projets](docs/project-lifecycle.md)
+
+## Référence
+
+- 📖 [Écosystème](docs/ecosystem.md)
+- 📖 [Feuille de route](docs/roadmap.md)
+- 📖 [Ce que morfSystem n'est pas](docs/non-goals.md)
+- 📖 [FAQ](docs/faq.md)
+
+---
+
 ## Pourquoi morfSystem ?
 
 morfSystem n'est pas né de la volonté de créer une nouvelle plateforme, un nouveau framework ou une nouvelle suite logicielle.
@@ -44,6 +73,8 @@ morfSystem n'impose jamais un composant lorsqu'un autre est installé.
 
 Il propose une coopération, jamais une obligation.
 
+> Pour comprendre les motivations ayant conduit à cette architecture, consultez la **[Philosophie](docs/philosophy.md)**.
+
 ---
 
 # Ce que morfSystem est
@@ -69,59 +100,17 @@ Le reste appartient à chaque projet.
 
 Cette approche permet à chaque composant d'évoluer sans remettre en cause l'ensemble de l'écosystème.
 
+> L'organisation générale est présentée dans **[Architecture](docs/architecture.md)**.
+
 ---
 
 # Ce que morfSystem n'est pas
 
 Comprendre ce que morfSystem refuse est aussi important que comprendre ce qu'il propose.
 
-morfSystem n'est pas une plateforme cloud.
+[...]
 
-Aucun composant ne dépend d'un service distant pour fonctionner.
-
-Le réseau local constitue le fonctionnement nominal de l'écosystème.
-
-L'accès distant peut exister, mais il reste une extension optionnelle.
-
----
-
-morfSystem n'est pas une suite logicielle.
-
-Installer un composant n'impose jamais l'installation des autres.
-
-Chaque application doit conserver un intérêt lorsqu'elle est utilisée seule.
-
-Les interactions entre composants enrichissent les fonctionnalités sans devenir une condition de fonctionnement.
-
----
-
-morfSystem n'est pas un framework.
-
-Les projets ne sont pas des modules d'un logiciel principal.
-
-Ils sont des applications indépendantes partageant des conventions.
-
----
-
-morfSystem n'est pas une collection de microservices dépendants.
-
-La communication entre applications repose sur des contrats publics.
-
-Une indisponibilité temporaire d'un service ne doit jamais provoquer l'arrêt des autres.
-
-Les fonctionnalités complémentaires disparaissent.
-
-Les fonctionnalités propres restent disponibles.
-
----
-
-morfSystem n'est pas une démonstration technique.
-
-Chaque choix architectural doit répondre à un besoin réel.
-
-Une technologie n'est jamais intégrée parce qu'elle est moderne.
-
-Elle est intégrée uniquement lorsqu'elle simplifie réellement l'écosystème.
+> Cette vision est développée dans **[Ce que morfSystem n'est pas](docs/non-goals.md)**.
 
 ---
 
@@ -129,81 +118,29 @@ Elle est intégrée uniquement lorsqu'elle simplifie réellement l'écosystème.
 
 ## Une responsabilité par service
 
-Chaque projet possède une responsabilité clairement identifiée.
-
-Lorsqu'un composant commence à remplir plusieurs rôles indépendants, il devient probablement deux projets.
-
-Cette règle reste l'une des plus importantes de tout l'écosystème.
-
----
+[...]
 
 ## L'autonomie avant tout
 
-Chaque service doit pouvoir fonctionner seul.
-
-L'absence d'un autre composant ne doit jamais empêcher son fonctionnement principal.
-
-Les collaborations sont des enrichissements.
-
-Jamais des dépendances.
-
----
+[...]
 
 ## Le réseau local est la vérité
 
-morfSystem est conçu pour fonctionner sur le réseau local.
-
-Les services s'y découvrent automatiquement.
-
-Les échanges sont directs.
-
-Aucune infrastructure distante n'est nécessaire au fonctionnement normal.
-
----
+[...]
 
 ## Les contrats plutôt que les connaissances
 
-Les composants ne connaissent pas leurs voisins.
-
-Ils connaissent uniquement des contrats.
-
-Une API.
-
-Un protocole.
-
-Un format d'échange.
-
-Cette approche permet de remplacer un composant sans modifier les autres.
-
----
+[...]
 
 ## Les standards plutôt que la magie
 
-Les échanges reposent autant que possible sur des protocoles simples et documentés.
-
-HTTP.
-
-JSON.
-
-UDP.
-
-Fichiers de configuration lisibles.
-
-L'utilisateur doit pouvoir comprendre ce qui se passe sans avoir besoin d'un outil propriétaire.
-
----
+[...]
 
 ## La simplicité avant l'effet de mode
 
-La meilleure architecture n'est pas la plus complexe.
+[...]
 
-C'est celle qui restera compréhensible dans cinq ans.
-
-Chaque nouvelle dépendance possède un coût.
-
-Chaque nouvelle fonctionnalité possède une maintenance.
-
-Chaque décision doit être justifiée.
+> Les principes sont détaillés dans **[Principes d'architecture](docs/architecture-principles.md)**.
 
 ---
 
@@ -211,21 +148,11 @@ Chaque décision doit être justifiée.
 
 Bien que les composants restent indépendants, ils partagent un ensemble de conventions.
 
-Ces conventions concernent notamment :
-
-- la découverte réseau ;
-- les ports réservés ;
-- les API communes ;
-- les informations publiées par chaque service ;
-- les mécanismes de déploiement ;
-- les conventions de configuration ;
-- les règles de supervision.
-
-Cette gouvernance n'est pas imposée par une application centrale.
-
-Elle est définie par l'écosystème lui-même.
+[...]
 
 Les outils communs, comme morfTools ou morfBeacon, facilitent cette cohérence sans devenir des dépendances obligatoires.
+
+> Les conventions communes sont décrites dans **[Gouvernance](docs/governance.md)** et **[Règles de développement](docs/development-rules.md)**.
 
 ---
 
@@ -235,18 +162,28 @@ morfSystem ne cherche pas à suivre les tendances.
 
 Il cherche à construire un ensemble cohérent, robuste et compréhensible.
 
-Chaque décision technique est prise au service de cette philosophie.
-
-Jamais l'inverse.
-
-Cette philosophie explique l'ensemble des choix réalisés dans chaque dépôt de l'écosystème.
-
-Avant d'écrire du code, morfSystem cherche d'abord à définir les responsabilités.
-
-Avant de créer une dépendance, il cherche à définir un contrat.
+[...]
 
 Avant d'ajouter une fonctionnalité, il cherche à préserver la simplicité.
 
 C'est cette philosophie qui relie l'ensemble des projets.
 
 Bien davantage que leur code.
+
+---
+
+# Pour aller plus loin
+
+Le dépôt **morfSystem** décrit les principes communs de l'écosystème.
+
+Chaque projet possède ensuite sa propre documentation dédiée.
+
+Si vous souhaitez approfondir votre découverte, nous vous recommandons l'ordre de lecture suivant :
+
+1. **[Bien démarrer](docs/getting-started.md)**
+2. **[Philosophie](docs/philosophy.md)**
+3. **[Architecture](docs/architecture.md)**
+4. **[Principes d'architecture](docs/architecture-principles.md)**
+5. **[Règles de développement](docs/development-rules.md)**
+6. **[Gouvernance](docs/governance.md)**
+7. **[Écosystème](docs/ecosystem.md)**
