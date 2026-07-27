@@ -12,20 +12,27 @@ peuvent être reconstruites.
 
 # Principe général
 
-Chaque service est installé dans son propre répertoire sous `/opt`.
+Chaque service est installé dans son propre répertoire sous `/opt`. Sa
+**configuration** vit à part, dans `/etc/<service>` sous Linux, là où un
+administrateur la cherche en premier (FHS). Le reste (données, cache, journaux,
+temporaires) reste sous `/opt/<service>`.
 
 Lorsqu'un service persiste des informations sur le disque, celles-ci sont
 réparties selon leur rôle.
 
 ```
+/etc/<service>/           # configuration (voir « config » plus bas)
 /opt/<service>/
 ├── <exécutable>
-├── config/
 ├── data/
 ├── cache/
 ├── logs/
 └── tmp/
 ```
+
+Sous Windows, où il n'existe pas de `/etc`, configuration et données cohabitent
+sous `%ProgramData%\<service>` (respectivement un sous-dossier de configuration et
+les sous-dossiers `data`, `cache`, `logs`, `tmp`).
 
 Tous les répertoires ne sont pas obligatoires. Un service ne crée que ceux dont il
 a réellement besoin.
@@ -36,12 +43,17 @@ persistantes.
 
 ---
 
-## `config/`
+## `config` (`/etc/<service>`)
 
-Le répertoire `config` contient la configuration persistante du service.
+La configuration persistante du service vit dans `/etc/<service>` sous Linux, et
+non à côté du binaire sous `/opt`. C'est l'emplacement standard (FHS) : un
+administrateur y regarde d'abord, et effacer `/opt/<service>` pour réinstaller
+proprement n'emporte alors pas les réglages.
 
 Ces fichiers décrivent le comportement du service mais ne constituent pas ses
-données métier.
+données métier. Les secrets (jetons, identifiants d'accès, coffres chiffrés)
+relèvent aussi de la configuration : ils vivent ici, séparés des données qu'ils
+protègent, jamais dans `data/`.
 
 Ils doivent être sauvegardés.
 
