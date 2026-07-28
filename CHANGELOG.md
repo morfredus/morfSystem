@@ -6,7 +6,18 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
-## [Non publié]
+## [1.1.0] - 2026-07-28
+
+### Modifié
+
+- **Configuration regroupée sous `/etc/morfsystem/<service>`.** Tout le parc
+  partage désormais un point d'entrée UNIQUE dans `/etc` (`/etc/morfsystem/`),
+  qui contient le fichier partagé `morfsystem.json` et un sous-dossier par
+  service, au lieu d'un `/etc/<service>` par service à la racine de `/etc`. Sous
+  Windows : `%ProgramData%\morfsystem\<service>`. Les données restent sous
+  `/opt/<service>`. L'ancien `/etc/<service>` est adopté à l'installation
+  (`migrate_from`).
+
 
 ## [1.0.0] - 2026-07-27
 

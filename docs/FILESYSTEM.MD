@@ -13,15 +13,21 @@ peuvent être reconstruites.
 # Principe général
 
 Chaque service est installé dans son propre répertoire sous `/opt`. Sa
-**configuration** vit à part, dans `/etc/<service>` sous Linux, là où un
-administrateur la cherche en premier (FHS). Le reste (données, cache, journaux,
-temporaires) reste sous `/opt/<service>`.
+**configuration** vit à part, regroupée sous un **point d'entrée unique** dans
+`/etc` : `/etc/morfsystem/<service>` sous Linux. Tout le parc partage ainsi un seul
+dossier `/etc/morfsystem`, qui contient à la fois la configuration partagée
+(`morfsystem.json`) et un sous-dossier par service, au lieu d'éparpiller un
+`/etc/<service>` par service à la racine de `/etc`. Le reste (données, cache,
+journaux, temporaires) reste sous `/opt/<service>`.
 
 Lorsqu'un service persiste des informations sur le disque, celles-ci sont
 réparties selon leur rôle.
 
 ```
-/etc/<service>/           # configuration (voir « config » plus bas)
+/etc/morfsystem/                 # point d'entrée unique de configuration
+├── morfsystem.json              # configuration partagée du parc
+└── <service>/                   # configuration propre au service (voir « config »)
+
 /opt/<service>/
 ├── <exécutable>
 ├── data/
@@ -30,9 +36,10 @@ réparties selon leur rôle.
 └── tmp/
 ```
 
-Sous Windows, où il n'existe pas de `/etc`, configuration et données cohabitent
-sous `%ProgramData%\<service>` (respectivement un sous-dossier de configuration et
-les sous-dossiers `data`, `cache`, `logs`, `tmp`).
+Sous Windows, où il n'existe pas de `/etc`, la configuration vit sous
+`%ProgramData%\morfsystem\<service>` (et le fichier partagé sous
+`%ProgramData%\morfsystem\morfsystem.json`) ; les données restent sous
+`%ProgramData%\<service>` (sous-dossiers `data`, `cache`, `logs`, `tmp`).
 
 Tous les répertoires ne sont pas obligatoires. Un service ne crée que ceux dont il
 a réellement besoin.
@@ -43,12 +50,13 @@ persistantes.
 
 ---
 
-## `config` (`/etc/<service>`)
+## `config` (`/etc/morfsystem/<service>`)
 
-La configuration persistante du service vit dans `/etc/<service>` sous Linux, et
-non à côté du binaire sous `/opt`. C'est l'emplacement standard (FHS) : un
-administrateur y regarde d'abord, et effacer `/opt/<service>` pour réinstaller
-proprement n'emporte alors pas les réglages.
+La configuration persistante du service vit dans `/etc/morfsystem/<service>` sous
+Linux, et non à côté du binaire sous `/opt`. Regrouper toutes les configurations
+sous `/etc/morfsystem` donne un point d'entrée unique dans `/etc` : un
+administrateur y trouve tout le parc au même endroit, et effacer `/opt/<service>`
+pour réinstaller proprement n'emporte pas les réglages.
 
 Ces fichiers décrivent le comportement du service mais ne constituent pas ses
 données métier. Les secrets (jetons, identifiants d'accès, coffres chiffrés)
