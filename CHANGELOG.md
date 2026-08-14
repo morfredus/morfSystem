@@ -6,6 +6,29 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.2.1] - 2026-08-14
+
+### Ajouté
+
+- Complète l'intégration des trois nouveaux composants au parcours d'accueil
+  [`docs/GETTING-STARTED.md`](docs/GETTING-STARTED.md) : morfPhoto (services),
+  PhotoHub (applications), morfDeploy (outils).
+
+## [1.2.0] - 2026-08-14
+
+### Ajouté
+
+- **Intégration des trois nouveaux composants dans la doc globale** :
+  - **morfPhoto** (service métier) : indexation permanente de la photothèque,
+    source de vérité des métadonnées photo ;
+  - **PhotoHub** (application) : client de bureau de morfPhoto ;
+  - **morfDeploy** (outils) : cœur de déploiement partagé, vendoré dans chaque
+    service.
+- Ajoutés au catalogue [`docs/ECOSYSTEM.md`](docs/ECOSYSTEM.md) (familles +
+  diagramme des familles) et au registre des ports de
+  [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) (morfPhoto `8793`, avec
+  morfCollector `8792` complété au passage).
+
 ## [1.1.0] - 2026-07-28
 
 ### Modifié

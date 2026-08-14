@@ -174,6 +174,8 @@ morfSensor       8788
 morfNotify       8789
 morfMonitor      8790
 morfDashboard    8791
+morfCollector    8792
+morfPhoto        8793
 ...              ...
 ```
 

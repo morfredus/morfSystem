@@ -63,6 +63,7 @@ D[Applications]
 
 A --> Sensor
 A --> MeteoHub
+A --> Photo
 A --> Analytics
 A --> Notify
 
@@ -70,11 +71,13 @@ B --> Beacon
 B --> Sync
 
 C --> Tools
+C --> Deploy
 
 D --> Monitor
 D --> GatewayLab
 D --> ComponentHub
 D --> Dashboard
+D --> PhotoHub
 ```
 
 ---
@@ -98,6 +101,18 @@ Présence.
 Mesures.
 
 Le projet représente la source de vérité concernant les informations qu'il produit.
+
+---
+
+## morfPhoto
+
+Indexation permanente de la photothèque.
+
+Il parcourt les dossiers autorisés et en extrait les métadonnées.
+
+Il tient un index consultable des photos.
+
+Il reste la source de vérité concernant la photothèque : les autres composants n'en tirent qu'une lecture.
 
 ---
 
@@ -217,6 +232,18 @@ Il ne produit aucune donnée.
 
 ---
 
+## PhotoHub
+
+Application de bureau de gestion de la photothèque.
+
+Elle est le client de morfPhoto.
+
+Elle présente la photothèque indexée et déclare les sélections de dossiers, dans les limites des racines autorisées.
+
+Elle ne détient aucune donnée : morfPhoto reste la source de vérité.
+
+---
+
 # Les outils
 
 ## morfTools
@@ -244,6 +271,20 @@ Il constitue aujourd'hui la couche de gouvernance technique de morfSystem.
 Cette gouvernance reste volontairement non intrusive.
 
 Les services continuent à fonctionner sans lui.
+
+---
+
+## morfDeploy
+
+Cœur de déploiement partagé du parc.
+
+Il fournit la mécanique commune d'installation, de mise à jour et de retrait des services, à partir du descriptif de chaque projet.
+
+Il est intégré (vendoré) dans chaque service plutôt qu'imposé comme dépendance externe : un service se déploie sans dépendre d'un dépôt distant.
+
+Il fournit le mécanisme.
+
+Il ne décide jamais de ce qu'un service installe.
 
 ---
 

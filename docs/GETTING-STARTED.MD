@@ -52,6 +52,7 @@ Exemples :
 - morfSync
 - morfAnalytics
 - morfNotify
+- morfPhoto
 
 ---
 
@@ -69,6 +70,7 @@ Exemples :
 - GatewayLab
 - ComponentHub
 - SiteWatch
+- PhotoHub
 
 ---
 
@@ -86,9 +88,10 @@ Ils participent à l'écosystème en utilisant les mêmes contrats que les autre
 
 Ils facilitent le développement, le déploiement et l'administration.
 
-Exemple :
+Exemples :
 
 - morfTools
+- morfDeploy
 
 ---
 
