@@ -242,6 +242,23 @@ Elle présente la photothèque indexée et déclare les sélections de dossiers,
 
 Elle ne détient aucune donnée : morfPhoto reste la source de vérité.
 
+Ce statut de client sans état a été validé sur plusieurs plateformes. Le même
+PhotoHub tourne sous Windows et sous Linux x64. Lancé sur une autre machine que
+d'habitude, il découvre le même morfPhoto par morfBeacon et retrouve exactement
+l'état construit ailleurs : la photothèque, les dossiers surveillés, les racines
+autorisées, l'indexation. Les chemins présentés sont ceux du serveur qui indexe,
+jamais ceux de la machine qui exécute l'interface. Rien n'est à synchroniser
+entre deux exemplaires de PhotoHub, parce qu'aucun des deux ne possède la
+configuration : ils interrogent la même autorité.
+
+Une application n'est pas un service administrable. PhotoHub s'annonce sur le
+réseau et morfMonitor la voit, vivante et joignable, marquée **non supervisée** :
+morfMonitor sait où elle tourne sans avoir à la piloter (septième principe). Il
+n'existe donc ni `morf deploy PhotoHub`, ni `morf purge PhotoHub`, ni unité de
+service : ces gestes appartiennent aux services administrables, pas aux
+applications clientes. Le badge « non supervisé » décrit une relation, pas un
+défaut.
+
 ---
 
 # Les outils

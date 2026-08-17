@@ -158,6 +158,50 @@ rôle dans l'architecture.
 
 ---
 
+# Effacer des données : le projet déclare, l'orchestration exécute
+
+Un service est le seul à savoir où vivent ses données et comment les effacer sans
+casser le reste.
+
+L'outil d'administration ne doit donc jamais deviner l'emplacement d'une base ni
+le découpage d'un cache.
+
+Chaque projet annonce les catégories de données qu'il sait effacer. Un
+identifiant libre par catégorie (par exemple `database`, `cache`, `history`,
+`thumbnails`, `sync-state`), un label lisible, et l'indication de son caractère
+destructif.
+
+Cette déclaration prolonge la distinction `data` / `cache` : effacer un cache ne
+perd rien de durable, effacer des données métier est irréversible et doit être
+signalé comme tel.
+
+L'orchestration se contente de transmettre une intention (« efface telle
+catégorie »). Le projet reste responsable de la manière de le faire.
+
+Lorsqu'un emplacement est configurable (un chemin que l'administrateur peut
+déplacer), l'orchestration lit sa valeur réelle dans la configuration du service
+plutôt que de la supposer. Le projet indique où lire ; personne ne devine. Un
+effacement qui viserait l'emplacement par défaut d'une donnée en réalité déplacée
+serait un mensonge silencieux, et c'est exactement ce qu'il faut éviter.
+
+Toute opération d'effacement doit pouvoir être inspectée avant exécution, sans
+rien supprimer. La simulation parcourt le même chemin que l'exécution réelle ;
+elle ne prétend jamais avoir agi quand elle n'a rien pu simuler.
+
+Effacer des données pendant que le service les écrit peut les corrompre. Un
+effacement réel est donc refusé tant que le service concerné tourne, sauf demande
+explicite de forcer : arrêter le service reste le geste sûr. La simulation, elle,
+ne touchant à rien, n'a pas cette contrainte.
+
+Effacer les données d'un service et le désinstaller restent deux gestes
+distincts. Retirer un service ne détruit pas ses données tant que cette
+destruction n'a pas été explicitement demandée.
+
+Le contrat technique de cette capacité vit dans morfDeploy, qui l'expose de façon
+identique sur toutes les plateformes.
+
+---
+
 # Principe architectural
 
 Dans morfSystem, les services sont propriétaires des données.

@@ -6,6 +6,41 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.4.0] - 2026-08-18
+
+### Ajouté
+
+- **Validation multi-plateforme du modèle « application cliente »** dans
+  [`docs/ECOSYSTEM.md`](docs/ECOSYSTEM.md) (section PhotoHub). Le même PhotoHub
+  tourne sous Windows et Linux x64, découvre morfPhoto par morfBeacon et retrouve
+  l'état/config construit ailleurs (photothèque, dossiers, racines, index) : le
+  client est sans état, rien à synchroniser entre deux exemplaires. Formalise
+  aussi la distinction **application (non supervisée, vue mais non pilotée) vs
+  service administrable** (ni `deploy`/`purge`/unité pour une application) et
+  relie au septième principe (observer plutôt que contrôler).
+
+## [1.3.1] - 2026-08-17
+
+### Modifié
+
+- **Doctrine d'effacement complétée** dans
+  [`docs/FILESYSTEM.md`](docs/FILESYSTEM.md), au fil de l'implémentation : un
+  emplacement configurable est **lu dans la configuration du service**, jamais
+  deviné (sinon un effacement raterait une donnée déplacée) ; un effacement réel
+  est **refusé tant que le service tourne** (éviter la corruption d'une donnée en
+  cours d'écriture), sauf forçage explicite.
+
+## [1.3.0] - 2026-08-17
+
+### Ajouté
+
+- **Doctrine d'effacement des données** dans
+  [`docs/FILESYSTEM.md`](docs/FILESYSTEM.md) : le projet déclare les catégories
+  qu'il sait effacer (identifiants libres, label, caractère destructif),
+  l'orchestration se contente de transmettre l'intention. Prolonge la distinction
+  `data` / `cache`, distingue effacement et désinstallation, et impose la
+  simulation avant exécution. Le contrat technique vit dans morfDeploy.
+
 ## [1.2.1] - 2026-08-14
 
 ### Ajouté
