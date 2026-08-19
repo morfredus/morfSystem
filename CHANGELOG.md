@@ -6,6 +6,18 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.4.1] - 2026-08-19
+
+### Modifié
+
+- **Chemin d'installation rendu visible depuis le point d'entrée.** Le guide
+  pratique (cloner, compiler, installer) existait mais n'était atteignable depuis
+  aucune porte d'entrée de l'écosystème. `GETTING-STARTED.md` gagne une section
+  « Je souhaite installer ou compiler morfSystem » qui pointe vers le guide de
+  démarrage de morfTools, et le README (Discover / Découvrir) une entrée « Install
+  & build / Installer & compiler ». Un débutant n'est plus laissé dans le
+  conceptuel sans commande concrète.
+
 ## [1.4.0] - 2026-08-18
 
 ### Ajouté

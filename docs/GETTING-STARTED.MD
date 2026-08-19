@@ -99,6 +99,18 @@ Exemples :
 
 Le meilleur point d'entrée dépend de votre objectif.
 
+## Je souhaite installer ou compiler morfSystem
+
+Le guide pratique, du premier clone jusqu'aux services qui tournent, est le
+**guide de démarrage de morfTools** :
+[GUIDE-DEMARRAGE.md](https://github.com/morfredus/morfTools/blob/main/docs/GUIDE-DEMARRAGE.md).
+
+Il déroule tout dans l'ordre : prérequis, récupération des projets (`morf clone`),
+vérification (`morf doctor`), compilation (`morf build`), installation des services,
+configuration, et dépannage. Pour l'installation détaillée de l'environnement de
+compilation sur une machine neuve, il renvoie à
+[ENVIRONNEMENT-DEV.md](https://github.com/morfredus/morfTools/blob/main/docs/ENVIRONNEMENT-DEV.md).
+
 ## Je souhaite utiliser un projet existant
 
 Rendez-vous directement dans le dépôt du projet concerné.
