@@ -158,12 +158,28 @@ de jeton car elle ne modifie rien.
 
 Le jeton généré par morfUpdate appartient uniquement à son compte de service.
 Pour que morfMonitor puisse transmettre la demande locale, créer une copie
-spécifique, lisible seulement par le compte morfMonitor :
+spécifique, lisible seulement par le **compte qui exécute réellement l'unité
+systemd**. Ce compte n'est pas nécessairement nommé `morfmonitor` : il dépend de
+l'installation de la machine.
+
+Détecter son nom, puis le conserver dans la même fenêtre de terminal pour les
+commandes qui suivent :
+
+```bash
+MONITOR_USER="$(sudo systemctl show --value --property=User morfmonitor)"
+test -n "$MONITOR_USER" || {
+  echo "Compte systemd de morfMonitor introuvable"
+  exit 1
+}
+echo "morfMonitor s'exécute avec : $MONITOR_USER"
+```
+
+Créer alors le fichier avec les droits de ce compte :
 
 ```bash
 sudo install \
   -o root \
-  -g morfmonitor \
+  -g "$MONITOR_USER" \
   -m 640 \
   /var/lib/morfsystem/morfupdate/api.token \
   /etc/morfsystem/morfmonitor/morfupdate-api.token
@@ -192,6 +208,27 @@ Le bloc doit rester à la racine du fichier JSON, au même niveau que
 `http_port`, `bind_address` et `beacon`. Vérifier la virgule avant et après le
 bloc selon sa position dans le fichier : un fichier JSON invalide empêche le
 service de démarrer.
+
+`sudoedit` peut modifier les permissions du fichier édité. Rétablir donc les
+droits du compte de service sur le fichier de configuration et son dossier :
+
+```bash
+sudo chown root:"$MONITOR_USER" /etc/morfsystem/morfmonitor
+sudo chmod 750 /etc/morfsystem/morfmonitor
+
+sudo chown root:"$MONITOR_USER" \
+  /etc/morfsystem/morfmonitor/morfmonitor.json \
+  /etc/morfsystem/morfmonitor/morfupdate-api.token
+sudo chmod 640 \
+  /etc/morfsystem/morfmonitor/morfmonitor.json \
+  /etc/morfsystem/morfmonitor/morfupdate-api.token
+
+sudo -u "$MONITOR_USER" test -r \
+  /etc/morfsystem/morfmonitor/morfmonitor.json \
+  && sudo -u "$MONITOR_USER" test -r \
+  /etc/morfsystem/morfmonitor/morfupdate-api.token \
+  && echo "Configuration et jeton lisibles"
+```
 
 Redémarrer et contrôler morfMonitor :
 
@@ -244,7 +281,8 @@ sudo systemctl status morfupdate --no-pager
 ### `jeton local de mise à jour inaccessible`
 
 La copie destinée à morfMonitor est absente ou ses permissions sont incorrectes.
-Reprendre exactement l'étape 4.
+Reprendre exactement l'étape 4, en vérifiant les droits avec le compte affiché
+par `systemctl show`, et non en supposant un nom de compte.
 
 ### Le bouton reste grisé
 

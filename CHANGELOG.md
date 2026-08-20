@@ -6,6 +6,17 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.4.3] - 2026-08-20
+
+### Corrigé
+
+- **Compte de service détecté au lieu d'être supposé.** Le guide de mise à jour
+  locale récupère désormais l'identité réellement utilisée par l'unité
+  `morfmonitor` avant de créer la copie du jeton. Il rétablit aussi les droits de
+  lecture du fichier de configuration après `sudoedit`. Cela évite de bloquer le
+  redémarrage lorsque l'installation utilise un compte différent de
+  `morfmonitor`.
+
 ## [1.4.2] - 2026-08-20
 
 ### Ajouté
