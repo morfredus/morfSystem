@@ -6,6 +6,24 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.4.2] - 2026-08-20
+
+### Ajouté
+
+- **Guide complet de mise à jour locale.**
+  [`docs/TESTER-MISE-A-JOUR-LOCALE.md`](docs/TESTER-MISE-A-JOUR-LOCALE.md)
+  accompagne un débutant, depuis les paquets nécessaires jusqu'au premier clic
+  dans morfMonitor : création du jeton GitHub limité, configuration réellement
+  lue, permissions de chaque secret, cible explicitement autorisée, contrôles et
+  diagnostic. Le périmètre local et les limites actuelles y sont explicités.
+
+### Corrigé
+
+- **Chemin de configuration unifié dans l'architecture.**
+  `ARCHITECTURE.md` ne décrit plus l'ancien `/etc/<service>` : la configuration
+  Linux est sous `/etc/morfsystem/<service>`, conformément à
+  `FILESYSTEM.md` et aux paquets installés.
+
 ## [1.4.1] - 2026-08-19
 
 ### Modifié

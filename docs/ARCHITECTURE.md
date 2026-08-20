@@ -142,7 +142,8 @@ Le déploiement suit lui aussi des conventions communes, pour qu'un composant s'
 
 - Un binaire s'installe dans son propre dossier (`/opt/<service>` sous Linux).
 
-- Sa configuration vit à l'endroit attendu par l'administrateur (`/etc/<service>` sous Linux).
+- Sa configuration vit à l'endroit attendu par l'administrateur
+  (`/etc/morfsystem/<service>` sous Linux).
 
 - Un point d'entrée unique gère l'installation, la mise à jour et la désinstallation, quel que soit le gestionnaire de services (systemd, Planificateur de tâches Windows, launchd).
 
@@ -158,7 +159,7 @@ Concrètement, sur une machine Linux :
 ├── logs/                 # journaux du service
 └── tmp/                  # fichiers temporaires
 
-/etc/<service>/           # la configuration, là où un administrateur la cherche
+/etc/morfsystem/<service>/ # la configuration, là où un administrateur la cherche
 └── <service>.json
 ```
 

@@ -111,6 +111,20 @@ configuration, et dépannage. Pour l'installation détaillée de l'environnement
 compilation sur une machine neuve, il renvoie à
 [ENVIRONNEMENT-DEV.md](https://github.com/morfredus/morfTools/blob/main/docs/ENVIRONNEMENT-DEV.md).
 
+Le guide de morfTools sert à installer et administrer les services. Il ne faut pas
+pour autant tout installer : commencer par le ou les services réellement utiles,
+puis ajouter le reste plus tard.
+
+## Je souhaite essayer le bouton de mise à jour locale
+
+Le bouton de morfMonitor délègue l'installation à morfUpdate, présent sur la
+même machine. Il ne permet pas encore d'administrer une autre machine du réseau.
+
+Suivre le guide pas à pas [Tester une mise à jour locale](TESTER-MISE-A-JOUR-LOCALE.md).
+Il commence sur une installation déjà fonctionnelle et décrit la création du
+jeton GitHub, les fichiers de configuration réellement lus, les permissions, les
+contrôles et le dépannage.
+
 ## Je souhaite utiliser un projet existant
 
 Rendez-vous directement dans le dépôt du projet concerné.

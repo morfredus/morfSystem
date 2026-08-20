@@ -2,7 +2,7 @@
 
 > **Un écosystème de services autonomes, libres et interopérables, conçu pour fonctionner d'abord chez son utilisateur, pas chez son éditeur.**
 
-[![Version](https://img.shields.io/badge/version-1.4.1-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.4.2-blue)](CHANGELOG.md)
 [![Doc](https://img.shields.io/badge/type-documentation-informational)](docs/)
 [![License](https://img.shields.io/badge/License-GPL--3.0--only-blue)](LICENSE)
 
@@ -20,6 +20,7 @@ Si vous découvrez le projet, nous vous recommandons de suivre l'ordre de lectur
 
 - 📖 [Bien démarrer](docs/GETTING-STARTED.md)
 - 🚀 [Installer & compiler](https://github.com/morfredus/morfTools/blob/main/docs/GUIDE-DEMARRAGE.md) — le guide pratique : cloner, compiler, installer les services
+- 🔄 [Tester une mise à jour locale](docs/TESTER-MISE-A-JOUR-LOCALE.md) — configurer morfUpdate et le bouton de morfMonitor pas à pas
 - 📖 [Philosophie](docs/PHILOSOPHY.md) — *pourquoi* l'écosystème est conçu ainsi
 - 📖 [Architecture](docs/ARCHITECTURE.md) — *comment* les pièces s'assemblent
 - 📖 [Penser en morfSystem](docs/THINKING-IN-MORFSYSTEM.md)
