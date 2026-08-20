@@ -6,6 +6,15 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.4.4] - 2026-08-20
+
+### Corrigé
+
+- La notice de test de mise à jour locale décrit désormais le modèle LAN de
+  confiance réellement livré : pas de jeton local ou GitHub pour les releases
+  publiques, nettoyage des anciens fichiers de test et procédure fiable pour
+  une installation depuis les sources.
+
 ## [1.4.3] - 2026-08-20
 
 ### Corrigé
