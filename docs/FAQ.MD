@@ -196,6 +196,16 @@ Toute implémentation respectant les contrats peut rejoindre l'écosystème.
 
 ---
 
+# Est-ce que ça marche vraiment, ou seulement sur le papier ?
+
+Les principes sont écrits ici. Ce qui a été **vu sur des machines réelles** est
+consigné dans [Validation réelle](VALIDATION-REELLE-MORFSYSTEM.md) : compilations
+Windows, Linux et Raspberry Pi, deux PhotoHub sans copie entre PC, plusieurs
+instances d'un même service sur le LAN, systemd, capteurs ESP32.
+
+Ce journal n'affirme pas que tout est clos. Il dit quels scénarios ont été
+exécutés, et lesquels restent ouverts.
+
 # morfSystem est-il terminé ?
 
 Non.

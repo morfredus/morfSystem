@@ -200,3 +200,12 @@ La liste unique où chaque service **réserve son port** avant tout déploiement
 
 Elle évite que deux services entrent en collision sur une même machine. Ce registre
 est tenu par `morfTools`.
+
+---
+
+## Validation réelle
+
+Journal, dans ce dépôt, des scénarios **exécutés sur du matériel**, distincts
+des principes qui disent ce que l'architecture *autorise*.
+
+> Voir [Validation réelle](VALIDATION-REELLE-MORFSYSTEM.md).

@@ -247,3 +247,6 @@ Les composants changent.
 Les contrats restent.
 
 C'est cette stabilité qui donne sa cohérence à l'écosystème.
+
+La découverte par capacité, et non par nom, a été éprouvée quand plusieurs
+instances du même service étaient visibles : [Validation réelle](VALIDATION-REELLE-MORFSYSTEM.md).

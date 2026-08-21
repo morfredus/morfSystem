@@ -197,3 +197,6 @@ Comprenez sa responsabilité.
 Observez comment il communique avec les autres.
 
 Vous découvrirez progressivement que l'écosystème ne repose pas sur la complexité de chacun de ses projets, mais sur la simplicité de leurs interactions.
+
+Quand vous voudrez savoir ce qui a déjà été **essayé chez l'auteur** plutôt que
+déduit de l'architecture, lisez [Validation réelle](VALIDATION-REELLE-MORFSYSTEM.md).

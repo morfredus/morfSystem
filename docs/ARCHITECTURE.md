@@ -10,6 +10,10 @@ Ce document explique *comment* elle est faite.
 
 Les deux se complètent.
 
+La [validation réelle](VALIDATION-REELLE-MORFSYSTEM.md) consigne ce qui a été
+éprouvé sur le parc (plusieurs OS, plusieurs clients, redémarrages), distinct
+de ce que l'architecture *autorise*.
+
 ---
 
 # Une forme sans centre
@@ -247,6 +251,8 @@ C'est le comportement nominal de morfSystem.
 - [Gestion des données locales](FILESYSTEM.md) : où et comment les données sont rangées.
 
 - [Écosystème](ECOSYSTEM.md) : les composants existants et leurs responsabilités.
+
+- [Validation réelle](VALIDATION-REELLE-MORFSYSTEM.md) : ce que le parc a réellement éprouvé.
 
 - [Gouvernance](GOVERNANCE.md) : comment la cohérence est préservée dans le temps.
 

@@ -145,6 +145,9 @@ Ils ne deviennent jamais propriétaires de cette donnée.
 
 Cette règle évite les incohérences.
 
+PhotoHub × morfPhoto et SiteWatch × morfAnalytics l'ont vérifiée sur le parc :
+voir [Validation réelle](VALIDATION-REELLE-MORFSYSTEM.md).
+
 ---
 
 # Neuvième principe

@@ -202,3 +202,6 @@ sudo journalctl -u morfupdate -n 100 --no-pager -l
 - une autre machine du LAN ne peut pas encore être mise à jour à distance ;
 - sous Windows, le même contrat sélectionne un `.zip`, mais la validation Linux
   est le premier parcours à réaliser.
+
+Les autres confrontations au parc (compilation, découverte, clients multiples)
+sont dans [Validation réelle](VALIDATION-REELLE-MORFSYSTEM.md).

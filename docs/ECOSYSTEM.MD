@@ -78,6 +78,7 @@ D --> GatewayLab
 D --> ComponentHub
 D --> Dashboard
 D --> PhotoHub
+D --> SiteWatch
 ```
 
 ---
@@ -135,6 +136,10 @@ Analyse les données produites par les autres composants.
 Il ne remplace jamais la source de vérité.
 
 Il construit une valeur supplémentaire à partir des informations existantes.
+
+Les domaines actuels (Meteo, journaux Web SiteWatch, Photo, Monitor, GitHub)
+sont des déclinaisons du même moteur. GitHub n'est jamais interrogé depuis
+morfAnalytics : seuls les objets déjà collectés par morfCollector sont importés.
 
 ---
 
@@ -229,6 +234,23 @@ Conçu principalement pour les écrans embarqués.
 Il présente les informations.
 
 Il ne produit aucune donnée.
+
+---
+
+## SiteWatch
+
+Surveillance des sites et présences en ligne.
+
+Il possède la configuration des journaux Web et, distinctement, celle des
+dépôts GitHub à suivre, le jeton, la collecte immédiate et les données
+consolidées. Il est la source de vérité de ces métriques.
+
+Il n'est pas un outil d'audience marketing. ComponentHub décrit ce qu'est un
+projet ; SiteWatch décrit comment cette présence est consultée.
+
+morfCollector archive le brut GitHub à heure fixe et ne comble que les
+absences. Une archive ne remplace jamais une mesure déjà consolidée.
+morfAnalytics n'analyse que la vérité publiée par SiteWatch.
 
 ---
 
@@ -336,3 +358,6 @@ La stabilité de morfSystem ne dépend donc pas du nombre de composants.
 Elle dépend uniquement de la stabilité de ses principes d'architecture.
 
 C'est cette philosophie qui permet à l'écosystème d'évoluer sans perdre sa cohérence.
+
+Les scénarios déjà vus sur le matériel (et ceux qui ne le sont pas encore) sont
+dans [Validation réelle](VALIDATION-REELLE-MORFSYSTEM.md).

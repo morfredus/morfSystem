@@ -212,7 +212,8 @@ services du système et leur délègue la persistance.
 Cette séparation garantit que :
 
 - les données restent disponibles même si un client est remplacé ;
-- plusieurs clients peuvent accéder simultanément au même service ;
+- plusieurs clients peuvent accéder simultanément au même service
+  (constaté avec PhotoHub : [Validation réelle](VALIDATION-REELLE-MORFSYSTEM.md)) ;
 - la sauvegarde s'effectue au niveau des services, jamais des interfaces
   utilisateur ;
 - chaque responsabilité reste clairement identifiée.

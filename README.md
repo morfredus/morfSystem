@@ -2,7 +2,7 @@
 
 > **An ecosystem of autonomous, free and interoperable services, designed to run first at its user's home, not at its vendor's.**
 
-[![Version](https://img.shields.io/badge/version-1.4.4-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.4.7-blue)](CHANGELOG.md)
 [![Doc](https://img.shields.io/badge/type-documentation-informational)](docs/)
 [![License](https://img.shields.io/badge/License-GPL--3.0--only-blue)](LICENSE)
 
@@ -48,6 +48,7 @@ If you are discovering the project, we recommend the following reading order:
 - 📖 [Ecosystem](docs/ECOSYSTEM.md)
 - 📖 [Glossary](docs/GLOSSARY.md) — the key terms at a glance
 - 📖 [Roadmap](docs/ROADMAP.md)
+- 📖 [Real-world validation](docs/VALIDATION-REELLE-MORFSYSTEM.md) — what was actually compiled, installed and used on the fleet (French)
 - 📖 [What morfSystem is not](docs/NON-GOALS.md)
 - 📖 [FAQ](docs/FAQ.md)
 

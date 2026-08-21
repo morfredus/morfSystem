@@ -6,6 +6,32 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.4.7] - 2026-08-21
+
+### Ajouté
+
+- Journal de [validation réelle](docs/VALIDATION-REELLE-MORFSYSTEM.md) : ce que le
+  parc a réellement compilé, installé, découvert et confronté (plusieurs
+  machines, PhotoHub croisé, GitHub, systemd). Relié depuis les README, la FAQ,
+  l'architecture, l'écosystème et la feuille de route.
+
+## [1.4.6] - 2026-08-21
+
+### Modifié
+
+- SiteWatch est la source de vérité des métriques GitHub (collecte immédiate et
+  consolidation). morfCollector archive et rattrape. morfAnalytics n'analyse
+  que cette vérité publiée.
+
+## [1.4.5] - 2026-08-20
+
+### Ajouté
+
+- Les métriques d'audience des dépôts GitHub publics appartiennent à SiteWatch,
+  pas à ComponentHub. morfCollector archive le brut (`github-traffic`) ;
+  morfAnalytics GitHub en construit la mémoire. Documenté dans l'écosystème et
+  la feuille de route.
+
 ## [1.4.4] - 2026-08-20
 
 ### Corrigé

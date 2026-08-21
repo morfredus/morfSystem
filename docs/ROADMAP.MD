@@ -34,6 +34,9 @@ Cela implique notamment :
 
 Une architecture stable constitue la meilleure base pour les évolutions futures.
 
+Le journal [Validation réelle](VALIDATION-REELLE-MORFSYSTEM.md) sert de preuve
+par l'usage : ce qui y manque n'est pas encore tenu pour acquis.
+
 ---
 
 # Priorité n°2
@@ -170,6 +173,15 @@ Les analyses visées sont :
 Les conclusions doivent distinguer les faits observés, les comparaisons et les
 limites : une hausse de robots n'établit pas, à elle seule, une attaque ni un
 impact utilisateur.
+
+### Étape 3b — Métriques GitHub (premier jalon livré)
+
+Les dépôts font partie de la présence en ligne. SiteWatch choisit, collecte à
+la demande, consolide et fait autorité. morfCollector archive le brut
+(`github-traffic/1`) et comble les absences. morfAnalytics lit uniquement cette
+vérité consolidée (`POST /github/ingest`). Les analyses de corrélation avec un
+article ou une release restent à venir et devront rester présentées comme des
+corrélations, jamais comme des causalités.
 
 ### Étape 4 — Rapports et diffusion optionnelle
 
