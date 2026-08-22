@@ -115,6 +115,8 @@ Il tient un index consultable des photos.
 
 Il reste la source de vérité concernant la photothèque : les autres composants n'en tirent qu'une lecture.
 
+Brancher des photos hébergées sur un autre poste se fait en un clic depuis PhotoHub (le serveur monte le partage en lecture seule) : voir [PHOTOS-SOURCES-RESEAU.md](PHOTOS-SOURCES-RESEAU.md).
+
 ---
 
 ## MeteoHub

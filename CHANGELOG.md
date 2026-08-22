@@ -6,6 +6,33 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.4.11] - 2026-08-22
+
+### Modifié
+
+- Notice TESTER-MISE-A-JOUR-LOCALE.md : tous les services du parc depuis morfMonitor, chaîne complète et tableau des blocages (`targets` à une entrée, libellé vs dépôt, helper, healthz).
+
+## [1.4.10] - 2026-08-22
+
+### Modifié
+
+- Notice PHOTOS-SOURCES-RESEAU.md : topologie PhotoHub Windows × morfPhoto sur Pi validée (ASUS-DEV et PC-FRED), authentification Microsoft (nom Windows + mot de passe Microsoft, pas l'e-mail), tableau des erreurs SMB (`ACCOUNT_LOCKED_OUT`, fstab/setuid, progression fichiers).
+
+## [1.4.9] - 2026-08-22
+
+### Modifié
+
+- Notice PHOTOS-SOURCES-RESEAU.md : une source SMB = un hostname = un montage
+  `/mnt/photos_<slug>` = un fichier `smb-photos-<slug>.cred` = une racine,
+  validation CIFS réelle avant fstab et JSON, pas de migration destructive des
+  anciennes racines.
+
+## [1.4.8] - 2026-08-21
+
+### Ajouté
+
+- Notice PHOTOS-SOURCES-RESEAU.md : sources morfPhoto poussées depuis PhotoHub, helper privilégié, posture LAN de confiance, trois topologies.
+
 ## [1.4.7] - 2026-08-21
 
 ### Ajouté

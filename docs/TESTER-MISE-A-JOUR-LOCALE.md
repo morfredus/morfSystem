@@ -9,27 +9,66 @@ Les releases publiques GitHub sont lues anonymement. Il ne faut créer ni jeton
 GitHub, ni jeton local, ni modifier les permissions de morfMonitor pour ce
 parcours.
 
-> Commencer avec un seul service, par exemple morfCollector. Ne jamais choisir
-> morfUpdate : l'agent refuse de se mettre à jour lui-même dans ce premier jalon.
+> Tous les services du parc peuvent être mis à jour depuis morfMonitor, **sauf
+> morfUpdate** (l'agent refuse de se mettre à jour lui-même). Le bouton envoie
+> le nom du **dépôt GitHub** (`morfDashboard`), jamais le libellé affiché
+> (`DashBoard`) ni l'unité systemd (`morfdashboard`).
+
+## Chaîne et blocages
+
+```text
+Navigateur LAN
+    POST /api/updates  {project, version}     port 8790
+        ▼
+morfMonitor  (update_agent.enabled)
+    POST http://127.0.0.1:8794/api/v1/updates
+        ▼
+morfUpdate
+    project ∈ targets ?  sinon 400
+    une opération à la fois ?  sinon 409
+        ▼
+GitHub release vX.Y.Z + manifest.json + SHA-256 + tag
+        ▼
+morfupdate-helper (setuid)  dpkg --install  +  systemctl restart
+        ▼
+GET health_url  →  200
+```
+
+Blocages fréquents, dans l'ordre où ils se voient :
+
+| Symptôme | Cause | Que faire |
+| --- | --- | --- |
+| `agent de mise à jour indisponible` | morfupdate arrêté, pas sur 8794, ou `update_agent.enabled` false | `curl http://127.0.0.1:8794/healthz` ; `systemctl status morfupdate` ; bloc dans morfmonitor.json |
+| `project and version must be declared identifiers` | `project` absent de `targets`, ou ancien bouton qui envoyait le libellé (`DashBoard`) | Vérifier `/etc/morfsystem/morfupdate/morfupdate.json` ; morfMonitor >= 0.14.3 |
+| Un seul service se met à jour | `targets` n'a qu'une entrée (essai initial). `service.py update` ne fusionne **pas** les listes | `sudo python3 service.py config push --force` depuis le clone morfUpdate, puis `systemctl restart morfupdate` |
+| `privileged helper failed` | helper absent ou setuid / Qt | morfUpdate >= 0.4.2, `sync-morf.sh`, réinstaller |
+| `another update is active` | une opération n'est pas finie | attendre, ou lire l'id dans la 409 |
+| Release / manifest / SHA | pas de `.deb` linux-arm64 (ou amd64) dans la release | republier le paquet |
+| `service health check failed` | l'unité redémarre trop lentement, ou `/healthz` n'est pas celui déclaré | journalctl de l'unité ; coller `health_url` sur le vrai port du registre |
+| Bouton invisible | pas d'état « Mise à jour disponible » | version exécutée déjà égale à la release, ou beacon sans version, ou pas de `repo` dans morfsystem.json |
 
 ## Avant de commencer
 
 Prévoir :
 
 - une machine Linux ou Raspberry Pi avec accès Internet ;
-- morfCollector déjà installé, dans une version plus ancienne que sa release ;
+- les services déjà installés, au moins un en version plus ancienne que sa release ;
 - une release GitHub publique contenant le `.deb` correspondant, `manifest.json`
   et les checksums ;
-- morfMonitor 0.14.0 ou plus récent et morfUpdate 0.4.1 ou plus récent.
+- morfMonitor 0.14.3 ou plus récent et morfUpdate 0.4.3 ou plus récent.
 
-Les exemples utilisent cette cible :
+Les cibles autorisées (hors morfUpdate) :
 
-| Valeur | morfCollector |
-| --- | --- |
-| Projet | `morfCollector` |
-| Unité systemd | `morfcollector` |
-| Dépôt GitHub | `morfredus/morfCollector` |
-| Santé | `http://127.0.0.1:8792/healthz` |
+| Projet | Unité | Santé |
+| --- | --- | --- |
+| morfAnalytics | morfanalytics | `http://127.0.0.1:8799/healthz` |
+| morfCollector | morfcollector | `http://127.0.0.1:8792/healthz` |
+| morfDashboard | morfdashboard | `http://127.0.0.1:8791/healthz` |
+| morfMonitor | morfmonitor | `http://127.0.0.1:8790/healthz` |
+| morfNotify | morfnotify | `http://127.0.0.1:8789/healthz` |
+| morfPhoto | morfphoto | `http://127.0.0.1:8793/healthz` |
+| morfSensor | morfsensor | `http://127.0.0.1:8788/healthz` |
+| morfSync | morfsync | `http://127.0.0.1:8080/healthz` |
 
 ## 1. Installer ou mettre à niveau les deux briques
 
@@ -38,7 +77,7 @@ machine. Depuis le dossier qui les contient :
 
 ```bash
 cd ~/Codage/morfSystem/dist
-sudo apt install ./morfupdate-0.4.1-linux-arm64.deb ./morfmonitor-0.14.0-linux-arm64.deb
+sudo apt install ./morfupdate-0.4.3-linux-arm64.deb ./morfmonitor-0.14.3-linux-arm64.deb
 ```
 
 Adapter les numéros aux fichiers réellement présents. Le paquet morfUpdate
@@ -85,37 +124,33 @@ Les anciennes clés `token_file` ou `github_token_file` peuvent rester dans les
 JSON existants : les versions récentes ne les lisent plus. Ne pas supprimer les
 clés SSH ni la configuration `gh` de GitHub.
 
-## 3. Autoriser explicitement le service à mettre à jour
+## 3. Autoriser les services à mettre à jour
 
-Ouvrir la configuration réellement utilisée par morfUpdate :
+La référence est `config/morfupdate.example.json` du clone morfUpdate : tous les
+services du tableau ci-dessus. Sur une **nouvelle** installation, ce fichier est
+copié vers `/etc/morfsystem/morfupdate/morfupdate.json`.
 
-```bash
-sudoedit /etc/morfsystem/morfupdate/morfupdate.json
-```
-
-Conserver `http_port` et `bind_address`, puis placer cette cible dans `targets`.
-Ne mettre ni URL de téléchargement, ni commande, ni chemin local dans ce
-fichier : l'agent les déduit uniquement de la release contrôlée.
-
-```json
-{
-  "http_port": 8794,
-  "bind_address": "127.0.0.1",
-  "targets": [
-    {
-      "project": "morfCollector",
-      "service": "morfcollector",
-      "repository": "morfredus/morfCollector",
-      "health_url": "http://127.0.0.1:8792/healthz"
-    }
-  ]
-}
-```
-
-Redémarrer l'agent :
+Sur une machine qui n'avait qu'**une** cible de test, cette liste n'est **pas**
+complétée par `service.py update`. Il faut pousser la référence :
 
 ```bash
+cd ~/Codage/01-Travail/morfUpdate
+sudo python3 service.py config push --force
 sudo systemctl restart morfupdate
+```
+
+Vérifier ensuite que le JSON déployé contient bien plusieurs objets dans
+`targets` (pas seulement `morfCollector`) :
+
+```bash
+python3 -c "import json; p='/etc/morfsystem/morfupdate/morfupdate.json'; d=json.load(open(p)); print(len(d['targets']), [t['project'] for t in d['targets']])"
+```
+
+Ne mettre ni URL de téléchargement, ni commande, ni chemin local dans `targets` :
+l'agent les déduit de la release contrôlée. `health_url` est la seule URL, et
+elle pointe toujours vers la machine locale.
+
+```bash
 curl http://127.0.0.1:8794/healthz
 ```
 
@@ -141,8 +176,9 @@ sudo systemctl status morfmonitor --no-pager
 
 1. Ouvrir `http://<nom-ou-ip-de-la-machine>:8790/`.
 2. Aller dans **Services morfSystem** puis cliquer sur **Vérifier les versions**.
-3. Attendre que morfCollector affiche une release plus récente.
-4. Cliquer sur **Mettre à jour** et confirmer.
+3. Attendre qu'un service affiche une release plus récente.
+4. Cliquer sur **Mettre à jour** et confirmer. Le projet demandé est le dépôt
+   GitHub, pas le libellé de la colonne Service.
 
 L'interface attend le résultat réel : téléchargement, contrôle du manifeste,
 SHA-256, provenance du tag, installation, redémarrage et contrôle de santé.
