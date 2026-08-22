@@ -6,6 +6,13 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.4.12] - 2026-08-22
+
+### Modifié
+
+- Notice TESTER-MISE-A-JOUR-LOCALE.md : `dpkg failed` alors que `sudo dpkg` réussit
+  = helper setuid sans UID réel root (morfUpdate 0.4.4).
+
 ## [1.4.11] - 2026-08-22
 
 ### Modifié

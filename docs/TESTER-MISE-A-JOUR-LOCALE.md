@@ -42,6 +42,7 @@ Blocages fréquents, dans l'ordre où ils se voient :
 | `project and version must be declared identifiers` | `project` absent de `targets`, ou ancien bouton qui envoyait le libellé (`DashBoard`) | Vérifier `/etc/morfsystem/morfupdate/morfupdate.json` ; morfMonitor >= 0.14.3 |
 | Un seul service se met à jour | `targets` n'a qu'une entrée (essai initial). `service.py update` ne fusionne **pas** les listes | `sudo python3 service.py config push --force` depuis le clone morfUpdate, puis `systemctl restart morfupdate` |
 | `privileged helper failed` | helper absent ou setuid / Qt | morfUpdate >= 0.4.2, `sync-morf.sh`, réinstaller |
+| `dpkg failed` (le même `.deb` s'installe avec `sudo`) | le helper n'avait que l'euid root ; `dpkg` exige `getuid()==0` | morfUpdate >= 0.4.4, réinstaller le helper (`apt install` du `.deb` ou `service.py install`) |
 | `another update is active` | une opération n'est pas finie | attendre, ou lire l'id dans la 409 |
 | Release / manifest / SHA | pas de `.deb` linux-arm64 (ou amd64) dans la release | republier le paquet |
 | `service health check failed` | l'unité redémarre trop lentement, ou `/healthz` n'est pas celui déclaré | journalctl de l'unité ; coller `health_url` sur le vrai port du registre |
