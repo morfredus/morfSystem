@@ -10,9 +10,10 @@ GitHub, ni jeton local, ni modifier les permissions de morfMonitor pour ce
 parcours.
 
 > Tous les services du parc peuvent être mis à jour depuis morfMonitor, **sauf
-> morfUpdate** (l'agent refuse de se mettre à jour lui-même). Le bouton envoie
-> le nom du **dépôt GitHub** (`morfDashboard`), jamais le libellé affiché
-> (`DashBoard`) ni l'unité systemd (`morfdashboard`).
+> morfUpdate** (l'agent refuse de se mettre à jour lui-même : l'installer avec
+> `apt` / `service.py install`, jamais le bouton). Le bouton envoie le nom du
+> **dépôt GitHub** (`morfDashboard`), jamais le libellé affiché (`DashBoard`)
+> ni l'unité systemd (`morfdashboard`).
 
 ## Chaîne et blocages
 
@@ -56,7 +57,7 @@ Prévoir :
 - les services déjà installés, au moins un en version plus ancienne que sa release ;
 - une release GitHub publique contenant le `.deb` correspondant, `manifest.json`
   et les checksums ;
-- morfMonitor 0.14.3 ou plus récent et morfUpdate 0.4.3 ou plus récent.
+- morfMonitor 0.14.4 ou plus récent et morfUpdate 0.4.5 ou plus récent.
 
 Les cibles autorisées (hors morfUpdate) :
 
@@ -78,11 +79,25 @@ machine. Depuis le dossier qui les contient :
 
 ```bash
 cd ~/Codage/morfSystem/dist
-sudo apt install ./morfupdate-0.4.3-linux-arm64.deb ./morfmonitor-0.14.3-linux-arm64.deb
+sudo apt install ./morfupdate-0.4.5-linux-arm64.deb
+curl -sS http://127.0.0.1:8794/healthz
+sudo apt install ./morfmonitor-0.14.4-linux-arm64.deb
 ```
 
-Adapter les numéros aux fichiers réellement présents. Le paquet morfUpdate
-installe aussi son helper privilégié, hors du répertoire de l'agent.
+Installer **morfUpdate d'abord**, puis morfMonitor. L'agent ne peut pas se
+mettre à jour lui-même ; sans 0.4.5, un `/healthz` trop lent affiche un échec
+alors que le paquet est déjà posé. Adapter les noms de fichiers à `ls`.
+
+Un `apt` n'écrase pas forcément `/etc/morfsystem/morfsystem.json`. Après un
+Monitor neuf, depuis le clone :
+
+```bash
+cd ~/Codage/01-Travail/morfMonitor
+./scripts/linux/deploy-config.sh --shared
+```
+
+Le paquet morfUpdate installe aussi son helper privilégié, hors du répertoire
+de l'agent.
 
 Pour travailler depuis les clones, resynchroniser d'abord la copie de
 morfDeploy puis installer chaque service. Lancer les commandes depuis le clone

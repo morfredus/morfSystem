@@ -6,6 +6,13 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.4.13] - 2026-08-23
+
+### Modifié
+
+- Notice TESTER : installer morfUpdate 0.4.5 **avant** morfMonitor 0.14.4
+  (`apt`, pas le bouton). Déployer `morfsystem.json` après le paquet Monitor.
+
 ## [1.4.12] - 2026-08-22
 
 ### Modifié
