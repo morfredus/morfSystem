@@ -1,6 +1,6 @@
 # Validation réelle du fonctionnement de morfSystem
 
-Document vivant, dernière mise à jour : **21 août 2026**.
+Document vivant, dernière mise à jour : **23 août 2026**.
 
 Il ne remplace ni les [contrats](CONTRACTS.md), ni les [principes](ARCHITECTURE-PRINCIPLES.md), ni le [changelog](../CHANGELOG.md) de ce dépôt, ni le CHANGELOG de chaque projet. Il consigne ce qui a été **observé sur le parc réel**.
 
@@ -39,7 +39,7 @@ PhotoHub, morfPhoto, morfAnalytics, morfBeacon, morfMonitor, SiteWatch, morfColl
 
 ### Hors de ce récit
 
-Les validations absentes de ces pages ne sont pas des échecs : elles n'ont simplement pas été racontées ici. En particulier, ce document ne prétend pas avoir éprouvé de bout en bout morfDashboard, GatewayLab, ComponentHub, morfNotify ou morfSync. Voir [l'écosystème](ECOSYSTEM.md) pour la carte complète.
+Les validations absentes de ces pages ne sont pas des échecs : elles n'ont simplement pas été racontées ici. morfNotify, morfSync et morfDashboard ont désormais été **compilés, installés et démarrés** lors d'une primo-installation complète depuis zéro (voir « Primo-installation complète depuis zéro » plus bas), mais leur usage fonctionnel de bout en bout n'est pas entièrement raconté ici ; GatewayLab et ComponentHub ne le sont pas non plus. Voir [l'écosystème](ECOSYSTEM.md) pour la carte complète.
 
 ## Compilation sur les plateformes réellement utilisées
 
@@ -102,6 +102,26 @@ La mise à jour de morfBeacon a été propagée dans plusieurs projets, avec con
 L'ASUS a aussi servi à éprouver ce qu'une documentation d'installation neuve doit réellement contenir. Les problèmes rencontrés ont porté sur la chaîne Qt, les presets CMake, les variables d'environnement, la disponibilité de `nlohmann_json`, les caches de build et la différence entre une configuration personnelle fonctionnelle et un exemple distribuable.
 
 Cette validation a conduit à une règle ferme : les dépôts et paquets ne doivent pas embarquer les adresses, noms de machines, chemins ou identifiants propres au parc de Fred. Une installation doit proposer des exemples génériques ; la configuration personnelle est créée et conservée séparément.
+
+### Primo-installation complète depuis zéro (pi4dev, 23 août 2026)
+
+`pi4dev` a été remis à blanc (services, `/opt`, `/etc/morfsystem`, `/var/lib`, sources) puis reconstruit à partir d'un unique `git clone` de morfTools, suivi de `morf dev clone` (récupération de tout le parc) puis de `morf install --all`. Les neuf services déployables ont été **compilés en ARM64, installés en unités systemd et démarrés en une passe, à partir de rien** : morfUpdate, morfAnalytics, morfCollector, morfMonitor, morfNotify, morfPhoto, morfSensor, morfSync et morfDashboard.
+
+Le test a confirmé plusieurs mécanismes en situation réelle :
+
+- l'ordre de déploiement respecte une **priorité déclarée** (`deployPriority`) : morfUpdate passe avant morfMonitor, sans introduire de dépendance entre services (morfMonitor tolère l'absence de morfUpdate) ;
+- les dépendances système déclarées sont résolues sur la machine réelle : Qt SerialPort présent a réactivé le driver LD2410C de morfSensor ; exiftool reste le prérequis runtime de morfPhoto ;
+- le mode `config replace` a posé chaque configuration avec sauvegarde préalable ;
+- les prérequis de compilation (toolchain, Qt 6, exiftool) documentés dans le guide de développement se sont révélés suffisants et exacts.
+
+Comme pour les autres validations, la primo-installation a surtout eu de la valeur par les **défauts qu'elle a révélés**, chacun corrigé puis reconfronté à la situation :
+
+1. morfDashboard échouait à l'étape de configuration : son `service.py` propre n'exposait pas le verbe `config` appelé sur chaque projet lors d'un déploiement `replace`. Ajouté (délégué à son propre script d'installation) ; l'installation complète passe désormais à 9 services sur 9.
+2. morfMonitor affichait morfUpdate « introuvable » dans la vue Écosystème alors qu'il tournait : morfUpdate était déclaré dans `beacon_apps` sans émettre de heartbeat morfBeacon. Retiré de cette liste — il reste supervisé en local par systemd et `/status`.
+3. un mot de passe SMB erroné remontait un « permission denied » générique, l'étape d'authentification étant marquée réussie à tort : `mount.cifs` n'expose pas le motif NT, seul le journal noyau le contient. Le helper privilégié de morfPhoto lit désormais `dmesg` et distingue un échec d'authentification (`STATUS_LOGON_FAILURE`) d'un refus de permission (`STATUS_ACCESS_DENIED`).
+4. les étapes de déploiement privilégiées laissaient un cache bytecode Python `root:root` dans l'arbre source de l'utilisateur, bloquant une remise à blanc lancée sans privilège. Les exécutions Python élevées tournent maintenant sans écrire ce cache, l'arbre source reste entièrement à l'utilisateur.
+
+Cette validation renforce la ligne « installations et mises à jour » de `pi4dev` : le parc entier se reconstruit depuis un dépôt unique et un environnement nu, dans un ordre prévisible, sans configuration manuelle préalable entre services.
 
 ### Packaging et traçabilité
 

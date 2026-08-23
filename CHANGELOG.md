@@ -6,6 +6,18 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.4.15] - 2026-08-23
+
+### Ajouté
+
+- `docs/VALIDATION-REELLE-MORFSYSTEM.md` : section « Primo-installation complète
+  depuis zéro (pi4dev, 23 août 2026) ». Consigne la reconstruction du parc entier
+  depuis un dépôt nu (clone morfTools -> `dev clone` -> `install --all`, 9 services
+  buildés et démarrés), les mécanismes confirmés (priorité de déploiement,
+  résolution des dépendances système, prérequis de compilation) et les quatre
+  défauts révélés puis corrigés (verbe `config` de morfDashboard, morfUpdate dans
+  `beacon_apps`, message d'échec SMB, cache bytecode root dans l'arbre source).
+
 ## [1.4.14] - 2026-08-23
 
 ### Modifié
