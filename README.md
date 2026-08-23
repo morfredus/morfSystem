@@ -2,7 +2,7 @@
 
 > **An ecosystem of autonomous, free and interoperable services, designed to run first at its user's home, not at its vendor's.**
 
-[![Version](https://img.shields.io/badge/version-1.4.13-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.4.14-blue)](CHANGELOG.md)
 [![Doc](https://img.shields.io/badge/type-documentation-informational)](docs/)
 [![License](https://img.shields.io/badge/License-GPL--3.0--only-blue)](LICENSE)
 

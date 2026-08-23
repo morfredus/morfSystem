@@ -200,8 +200,10 @@ de faux pourcentage.
 
 Monter un partage cifs exige `root` ; le service morfPhoto tourne sans privilège.
 Le seul point d'entrée privilégié est `morfphoto-helper` (setuid `4750`,
-`/usr/lib/morfsystem/morfphoto/`). Invariants durs : Linux, root, CIFS lecture
-seule, point de montage uniquement `/mnt/photos_<slug>`, mot de passe sur stdin,
+`/usr/lib/morfsystem/morfphoto/`). Le `postinst` du paquet pose aussi `750`
+`root:<compte du service>` sur le **dossier** (sinon le binaire est invisible).
+PhotoHub appelle `GET /api/v1/sources/ready` (verbe helper `probe`) avant
+d'envoyer identifiants. Invariants durs : Linux, root, CIFS lecture seule, point de montage uniquement `/mnt/photos_<slug>`, mot de passe sur stdin,
 un `.cred` par slug, JSON restauré si la génération est invalide.
 
 ## Les trois topologies

@@ -6,6 +6,13 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.4.14] - 2026-08-23
+
+### Modifié
+
+- Notice PHOTOS : `postinst` pose 750 sur le dossier du helper ; PhotoHub
+  vérifie `GET /api/v1/sources/ready` avant l'envoi.
+
 ## [1.4.13] - 2026-08-23
 
 ### Modifié
