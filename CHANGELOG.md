@@ -6,6 +6,17 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.5.0] - 2026-08-24
+
+### Ajouté
+
+- **`docs/CONTRAT-ACTIVITE.md`** : nouveau contrat générique `activity/1`. Un
+  service déclare **ce qu'il est en train de faire** (indexation, compilation,
+  collecte...) via un champ optionnel `activity` dans `/status` - jamais dans le
+  heartbeat beacon. morfMonitor le lit en temps réel (« Activités en cours ») ;
+  morfAnalytics l'historise à la fin, sur déclaration du service propriétaire
+  (`POST /api/monitor/activity`). Contrat référencé depuis `CONTRACTS.md`.
+
 ## [1.4.15] - 2026-08-23
 
 ### Ajouté

@@ -174,6 +174,17 @@ C'est exactement ce que promet un contrat.
 
 ---
 
+# Autres contrats documentés
+
+Au-delà de morfBeacon, chaque interaction récurrente entre composants a son
+contrat écrit :
+
+- [Contrat d'activité en cours (`activity/1`)](CONTRAT-ACTIVITE.md) - comment un
+  service déclare **ce qu'il est en train de faire** (indexation, compilation,
+  collecte...), lu en temps réel par morfMonitor et historisé par morfAnalytics.
+
+---
+
 # Les contrats sont publics
 
 Tous les contrats de morfSystem doivent être documentés.
