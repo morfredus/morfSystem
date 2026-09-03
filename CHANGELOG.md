@@ -6,6 +6,16 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.5.1] - 2026-09-03
+
+### Fixed
+
+- Add the parc-standard `.gitattributes` (`* text=auto`, shell scripts LF, Windows
+  scripts CRLF, binaries left untouched). Without it, a working tree checked out
+  with CRLF by Git for Windows showed as dirty under WSL git (`core.autocrlf=false`),
+  which made the release chain's dirty-tree check refuse the repo. With `text=auto`,
+  line endings are normalised consistently in every environment.
+
 ## [1.5.0] - 2026-08-24
 
 ### Ajouté
