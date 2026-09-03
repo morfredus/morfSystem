@@ -6,6 +6,15 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.5.2] - 2026-09-03
+
+### Added
+
+- A `.gitignore` (the repo had none) ignoring `.vscode/`, `.vs/`,
+  `*.code-workspace` and common editor/system cruft. An editor-created `.vscode/`
+  was otherwise untracked and made the working tree dirty, which blocked the
+  release chain's clean-tree preflight.
+
 ## [1.5.1] - 2026-09-03
 
 ### Fixed

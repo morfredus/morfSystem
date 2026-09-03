@@ -1,0 +1,15 @@
+# morfSystem est un dépôt de documentation : peu de choses à ignorer, sinon la
+# configuration locale des éditeurs, qui ne doit jamais salir l'arbre ni bloquer
+# la chaîne de publication (sa préflight refuse tout working tree non propre).
+
+# Configuration VS Code : locale à chaque machine, exclue de robocopy.
+.vscode/
+.vs/
+*.code-workspace
+
+# Cruft système / éditeurs.
+.DS_Store
+Thumbs.db
+*~
+*.bak
+*.tmp
