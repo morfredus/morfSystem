@@ -1,10 +1,113 @@
 # Validation réelle du fonctionnement de morfSystem
 
-Document vivant, dernière mise à jour : **23 août 2026**.
+Document vivant, dernière mise à jour : **5 septembre 2026**.
 
 Il ne remplace ni les [contrats](CONTRACTS.md), ni les [principes](ARCHITECTURE-PRINCIPLES.md), ni le [changelog](../CHANGELOG.md) de ce dépôt, ni le CHANGELOG de chaque projet. Il consigne ce qui a été **observé sur le parc réel**.
 
 Documents liés : [Architecture](ARCHITECTURE.md) · [Écosystème](ECOSYSTEM.md) · [Filesystem](FILESYSTEM.md) · [Tester une mise à jour locale](TESTER-MISE-A-JOUR-LOCALE.md) · [Feuille de route](ROADMAP.md) · [FAQ](FAQ.md)
+
+## État actuel - Écosystème validé
+
+Dernière validation : **5 septembre 2026**.
+
+🟢 **morfSystem est opérationnel de bout en bout en conditions réelles.**
+
+Les services, applications et outils principaux sont installés et validés sur les
+plateformes cibles : **Windows x64, Linux x64 et Raspberry Pi ARM64**. La chaîne
+complète - développement, packaging, déploiement, synchronisation, supervision,
+collecte et gestion de la photothèque - a été éprouvée sur le parc réel. Les paquets
+ARM64 cross-compilés depuis WSL s'installent et tournent sur le Raspberry Pi ; la
+supervision et le redémarrage des services sont éprouvés (dont la correction de
+stabilité de morfMonitor 0.16.2, vérifiée sur `pi4dev`).
+
+Côté photothèque, PhotoHub et morfPhoto sont opérationnels : découverte, indexation
+incrémentale, aperçu des dossiers, tri et écran de qualification. La qualification
+enregistre son contexte dans un sidecar `.morfphoto.json` écrit **à côté des photos**
+(morfPhoto n'écrit que ce sidecar, jamais les photos). Le montage d'une source SMB en
+lecture/écriture **par source** (morfPhoto 0.13.0 / PhotoHub 0.16.0) a été **validé sur
+le parc** : après passage du montage CIFS en `rw` et redémarrage du Pi, un test réel de
+création puis suppression de fichier a confirmé l'écriture, et un sidecar
+`.morfphoto.json` est bien créé lors d'une qualification (voir le détail plus bas).
+
+Statut : 🟢 **Écosystème opérationnel - première validation complète.**
+
+« Opérationnel » ne veut pas dire « terminé » : le projet continue d'évoluer, mais son
+socle est désormais assez mûr pour être utilisé et éprouvé en conditions réelles.
+
+```text
+                    MORFSYSTEM
+                         │
+          ┌──────────────┴──────────────┐
+          │                             │
+       BUILD                        DEPLOY
+          │                             │
+     Windows x64                  Windows x64
+     Linux x64                    Linux x64
+     Linux ARM64                  Linux ARM64
+                                        │
+                                        ▼
+                                  Raspberry Pi
+                                        │
+                         ┌──────────────┼──────────────┐
+                         │              │              │
+                    Services       Supervision     PhotoHub
+                         │                             │
+                         ▼                             ▼
+                    opérationnels                 morfPhoto
+                                                       │
+                                                       ▼
+                                                Qualification
+                                                       │
+                                                       ▼
+                                               .morfphoto.json
+```
+
+### Sources qualifiables : montage lecture/écriture validé (5 septembre 2026)
+
+Le support des sources qualifiables a été rendu opérationnel de bout en bout, pour que
+morfPhoto puisse écrire les sidecars `.morfphoto.json` **sans jamais modifier les fichiers
+photo eux-mêmes**. Il faut distinguer nettement ce qui relève du **système** (le
+comportement normal, pour toute installation) et ce qui a relevé d'une **migration**
+ponctuelle d'une installation ancienne.
+
+**Ce qui a été développé (comportement normal, installation neuve comprise).** Le système
+sait désormais :
+
+- déclarer une source comme `writable` (par défaut, une source reste en lecture seule) ;
+- propager cette information de l'API à `PhotoModule`, puis au `SourceManager`, enfin au
+  helper privilégié qui gère les montages ;
+- demander un montage `rw` au lieu de `ro` ;
+- détecter qu'un montage existant est dans le mauvais mode, et **le remonter** dans le
+  mode demandé ;
+- conserver ce mode dans la configuration du montage (`fstab`) ;
+- permettre ensuite à morfPhoto d'écrire son `.morfphoto.json`.
+
+Une installation neuve génère donc directement la configuration correspondant au modèle
+`writable` : **aucune modification manuelle de `fstab` n'est requise.**
+
+**Validation de migration d'une installation existante.** Sur `pi4fred`, la source SMB de
+la photothèque était encore déclarée `ro` dans `/etc/fstab`, conformément à l'ancienne
+configuration **antérieure** au support des sources qualifiables. Les droits Windows
+étaient déjà compatibles avec l'écriture :
+
+```text
+SMB  : PC-FRED\fred -> CHANGE
+NTFS : PC-FRED\fred -> FULL CONTROL
+```
+
+Cette configuration historique constituait donc le dernier verrou empêchant l'usage
+effectif du mode `rw`. La source `photos_pc-fred` a été migrée en `rw` (remplacement de
+`...,ro,...` par `...,rw,...`, uniquement pour la photothèque qualifiable ; les archives
+peuvent rester en `ro`). Après redémarrage du Pi, le montage CIFS apparaît `type cifs
+(rw,...)`, et un test réel de création puis suppression de fichier a confirmé l'écriture
+sur le partage SMB, jusqu'à la création d'un `.morfphoto.json` lors d'une qualification.
+
+Cette intervention est **spécifique à la migration de l'installation existante** et **ne
+constitue pas une étape d'installation** : une installation neuve part directement du
+modèle `writable`. Le point de fond : ce n'est pas Windows qui a été rendu writable (il
+l'était déjà), c'est le **chemin complet jusqu'à la photothèque**, en levant le dernier
+verrou hérité (le `ro` du montage CIFS dans `fstab`). `writable` n'est donc pas un simple
+drapeau d'interface : il pilote réellement le mode de montage.
 
 ## Objet du document
 

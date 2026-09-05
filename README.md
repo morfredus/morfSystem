@@ -2,13 +2,29 @@
 
 > **An ecosystem of autonomous, free and interoperable services, designed to run first at its user's home, not at its vendor's.**
 
-[![Version](https://img.shields.io/badge/version-1.5.2-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.6.0-blue)](CHANGELOG.md)
 [![Doc](https://img.shields.io/badge/type-documentation-informational)](docs/)
 [![License](https://img.shields.io/badge/License-GPL--3.0--only-blue)](LICENSE)
 
 *Read in another language: **English** (this document) · [Français](README.fr.md).*
 
 > The reference documentation itself lives in `docs/` and is currently written in French.
+
+## Project status
+
+🟢 **Ecosystem operational - first full real-world validation on 5 September 2026.**
+
+The main morfSystem components run on the target platforms **Windows x64, Linux x64
+and ARM64**. The complete chain - development, packaging, deployment and operation -
+has been validated in real conditions, including ARM64 packages cross-compiled from
+WSL and deployed on a Raspberry Pi, service supervision and restart, and the
+PhotoHub / morfPhoto photo library - down to photo qualification writing its
+`.morfphoto.json` sidecar on a per-source read/write SMB mount (morfPhoto never
+touches the photos themselves). "Operational" does not mean "finished": the project
+keeps evolving, but its foundation is now mature enough to be used and tested for real.
+
+See [`docs/VALIDATION-REELLE-MORFSYSTEM.md`](docs/VALIDATION-REELLE-MORFSYSTEM.md)
+for the detailed validations.
 
 ---
 

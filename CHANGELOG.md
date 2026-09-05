@@ -6,6 +6,35 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.6.0] - 2026-09-05
+
+### Milestone - morfSystem ecosystem validated in real conditions
+
+Not a software release: an ecosystem milestone. The morfSystem ecosystem is now
+operational end to end in real conditions, recorded in
+[`docs/VALIDATION-REELLE-MORFSYSTEM.md`](docs/VALIDATION-REELLE-MORFSYSTEM.md) and
+surfaced as a status panel on the README.
+
+- Packages operational on Windows x64, Linux x64 and Linux ARM64.
+- ARM64 packages cross-compiled from WSL and deployed on a Raspberry Pi.
+- Service supervision and restart validated (incl. the morfMonitor 0.16.2 stability
+  fix verified on `pi4dev`).
+- PhotoHub / morfPhoto operational: discovery, incremental indexing, folder preview,
+  sorting and the qualification screen.
+- Per-source read-only / read-write photo sources: morfPhoto declares a source
+  `writable`, propagates it to the privileged mount helper, requests an `rw` mount,
+  detects and remounts a source stuck in the wrong mode, and persists that mode -
+  then writes only the `.morfphoto.json` sidecar, never the photos.
+- Photo qualification validated: `.morfphoto.json` written on a read/write SMB mount,
+  confirmed by a real create/delete test after reboot.
+- Full chain development -> packaging -> installation -> operation validated.
+
+Note: the manual `ro` -> `rw` `/etc/fstab` change on `pi4fred` was a **migration** of a
+pre-existing install (configured before writable sources existed), not an installation
+step. A fresh install is generated directly with the `writable` model and needs no manual
+`fstab` edit. "Operational" is not "finished": the project keeps evolving; its foundation
+is now mature enough to be used and tested for real.
+
 ## [1.5.2] - 2026-09-03
 
 ### Added
