@@ -79,6 +79,7 @@ D --> ComponentHub
 D --> Dashboard
 D --> PhotoHub
 D --> SiteWatch
+D --> LanAtlas
 ```
 
 ---
@@ -282,6 +283,29 @@ n'existe donc ni `morf deploy PhotoHub`, ni `morf purge PhotoHub`, ni unité de
 service : ces gestes appartiennent aux services administrables, pas aux
 applications clientes. Le badge « non supervisé » décrit une relation, pas un
 défaut.
+
+## LanAtlas
+
+Application de bureau qui cartographie le réseau local : la Livebox Orange, les
+nœuds du mesh Deco et chaque équipement qui s'y raccroche. Elle rattache chaque
+machine à la box ou au nœud qui la porte, garde une mémoire de présence, et sait
+piloter les appareils connectés qui le permettent (aujourd'hui une bande LED
+Tuya : marche, luminosité, couleur), la carte d'abord, l'action seulement pour
+ceux dont on sait parler.
+
+Elle fonctionne entièrement seule. Installée sur une machine qui ne possède aucun
+composant morfSystem, elle scanne, cartographie et pilote sans rien attendre du
+parc : sa configuration et ses secrets vivent dans son propre magasin, jamais
+dans un service tiers. C'est volontaire, et cette autonomie est la règle.
+
+Elle peut néanmoins consommer les briques du parc quand elles sont là :
+morfBeacon pour repérer les services morfSystem sur la carte, morfUpdate pour se
+mettre à jour, morfTools pour son empaquetage. Comme ComponentHub et PhotoHub,
+elle s'annonce sur le réseau (morfbeacon/1, `/status` sur le port applicatif
+8883) et morfMonitor la voit, vivante et joignable, marquée **non supervisée**.
+Ce n'est pas un service administrable : ni `morf deploy LanAtlas`, ni `morf purge
+LanAtlas`, ni unité systemd, ni battement de cœur obligatoire. Son absence d'une
+machine n'est jamais une panne du parc.
 
 ---
 

@@ -6,6 +6,19 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.6.1] - 2026-09-09
+
+### Added
+
+- **LanAtlas** documented in `docs/ECOSYSTEM.md`: added to the applications node
+  of the map and given its own section. It maps the local network (Livebox, Deco
+  mesh, clients) and controls the connected devices that allow it (a Tuya LED
+  strip today). Described as an autonomous desktop application, not a parc
+  service: it runs standalone without any morfSystem component, may consume the
+  parc bricks (morfBeacon, morfUpdate, morfTools) when present, announces itself
+  over morfBeacon (`/status` on app port 8883, non-supervised), and its absence
+  is never a fault.
+
 ## [1.6.0] - 2026-09-05
 
 ### Milestone - morfSystem ecosystem validated in real conditions
