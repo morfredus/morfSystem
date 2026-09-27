@@ -84,16 +84,18 @@ curl -sS http://127.0.0.1:8794/healthz
 sudo apt install ./morfmonitor-0.14.4-linux-arm64.deb
 ```
 
-Installer **morfUpdate d'abord**, puis morfMonitor. L'agent ne peut pas se
-mettre à jour lui-même ; sans 0.4.5, un `/healthz` trop lent affiche un échec
+Installer **morfUpdate d'abord**, puis morfMonitor. Par défaut, l'agent ne se
+met pas à jour lui-même (l'auto-mise à jour existe depuis morfUpdate 0.8.0, mais
+seulement sur déclaration explicite `"self": true`, à réserver au banc de test) ; sans 0.4.5, un `/healthz` trop lent affiche un échec
 alors que le paquet est déjà posé. Adapter les noms de fichiers à `ls`.
 
-Un `apt` n'écrase pas forcément `/etc/morfsystem/morfsystem.json`. Après un
-Monitor neuf, depuis le clone :
+Un `apt` n'écrase pas forcément `/etc/morfsystem/morfsystem.json`. Ce fichier
+partagé a un seul propriétaire, `config.py shared` de morfTools. Après un
+Monitor neuf, depuis le clone de morfTools :
 
 ```bash
-cd ~/Codage/01-Travail/morfMonitor
-./scripts/linux/deploy-config.sh --shared
+./config.py shared merge     # ajoute les clés nouvelles, garde les valeurs locales
+./config.py shared apply     # ou : écrase depuis le clone et redémarre les lecteurs
 ```
 
 Le paquet morfUpdate installe aussi son helper privilégié, hors du répertoire

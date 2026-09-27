@@ -2,7 +2,7 @@
 
 > **An ecosystem of autonomous, free and interoperable services, designed to run first at its user's home, not at its vendor's.**
 
-[![Version](https://img.shields.io/badge/version-1.6.1-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.6.2-blue)](CHANGELOG.md)
 [![Doc](https://img.shields.io/badge/type-documentation-informational)](docs/)
 [![License](https://img.shields.io/badge/License-GPL--3.0--only-blue)](LICENSE)
 
@@ -37,10 +37,10 @@ If you are discovering the project, we recommend the following reading order:
 ## Discover
 
 - 📖 [Getting started](docs/GETTING-STARTED.md)
-- 🚀 [Install & build](https://github.com/morfredus/morfTools/blob/main/docs/GUIDE-DEMARRAGE.md) — the hands-on guide: clone, compile, install the services
-- 🔄 [Test a local update](docs/TESTER-MISE-A-JOUR-LOCALE.md) — a step-by-step French guide to configure morfUpdate and the morfMonitor button
-- 📖 [Philosophy](docs/PHILOSOPHY.md) — *why* the ecosystem is designed this way
-- 📖 [Architecture](docs/ARCHITECTURE.md) — *how* the pieces fit together
+- 🚀 [Install & build](https://github.com/morfredus/morfTools/blob/main/docs/GUIDE-DEMARRAGE.md) - the hands-on guide: clone, compile, install the services
+- 🔄 [Test a local update](docs/TESTER-MISE-A-JOUR-LOCALE.md) - a step-by-step French guide to configure morfUpdate and the morfMonitor button
+- 📖 [Philosophy](docs/PHILOSOPHY.md) - *why* the ecosystem is designed this way
+- 📖 [Architecture](docs/ARCHITECTURE.md) - *how* the pieces fit together
 - 📖 [Thinking in morfSystem](docs/THINKING-IN-MORFSYSTEM.md)
 
 ## Understand
@@ -56,15 +56,15 @@ If you are discovering the project, we recommend the following reading order:
 
 ## Contribute
 
-- 📖 [Contributing](docs/CONTRIBUTING.md) — how to take part, and the hard rules
+- 📖 [Contributing](docs/CONTRIBUTING.md) - how to take part, and the hard rules
 - 📖 [New-project checklist](docs/checklists/NEW-PROJECT.md)
 
 ## Reference
 
 - 📖 [Ecosystem](docs/ECOSYSTEM.md)
-- 📖 [Glossary](docs/GLOSSARY.md) — the key terms at a glance
+- 📖 [Glossary](docs/GLOSSARY.md) - the key terms at a glance
 - 📖 [Roadmap](docs/ROADMAP.md)
-- 📖 [Real-world validation](docs/VALIDATION-REELLE-MORFSYSTEM.md) — what was actually compiled, installed and used on the fleet (French)
+- 📖 [Real-world validation](docs/VALIDATION-REELLE-MORFSYSTEM.md) - what was actually compiled, installed and used on the fleet (French)
 - 📖 [What morfSystem is not](docs/NON-GOALS.md)
 - 📖 [FAQ](docs/FAQ.md)
 

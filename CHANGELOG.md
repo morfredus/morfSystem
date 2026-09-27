@@ -6,6 +6,20 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.6.2] - 2026-09-27
+
+### Fixed
+
+- **`docs/TESTER-MISE-A-JOUR-LOCALE.md` used a removed script.** It deployed the
+  shared `morfsystem.json` with morfMonitor's `deploy-config.sh --shared`; that file
+  now belongs to morfTools `config.py shared` (`merge` / `apply`) alone. The same
+  page said the agent could not update itself: it can since morfUpdate 0.8.0, on
+  explicit opt-in (`"self": true`).
+
+### Changed
+
+- Em dashes replaced by `-` in the project's own files.
+
 ## [1.6.1] - 2026-09-09
 
 ### Added

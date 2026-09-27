@@ -111,7 +111,7 @@ Le moteur commun ne doit connaître ni la météo, ni le réseau, ni les journau
 Web : il reçoit un contrat de données documenté et produit des résultats
 versionnés.
 
-### Étape 1 — Contrat commun et restitution
+### Étape 1 - Contrat commun et restitution
 
 Avant de connecter une nouvelle source, l'écosystème doit définir :
 
@@ -126,7 +126,7 @@ Chaque analyse doit pouvoir expliquer la période étudiée, la comparaison de
 référence et la raison d'une alerte. Une anomalie est un signal à examiner,
 jamais une affirmation de cause.
 
-### Étape 2 — Analyse réseau avec GatewayLab
+### Étape 2 - Analyse réseau avec GatewayLab
 
 GatewayLab constitue le prochain domaine naturel : il connaît les équipements
 vus sur le réseau et les événements de présence. morfAnalytics devra en tirer
@@ -150,7 +150,7 @@ La synthèse doit pouvoir répondre clairement à des questions simples :
 « le réseau a-t-il été stable ? », « qu'est-ce qui est nouveau ? », « quels
 équipements ont disparu ou reviennent de manière inhabituelle ? ».
 
-### Étape 3 — Analyse de journaux Web avec SiteWatch
+### Étape 3 - Analyse de journaux Web avec SiteWatch
 
 SiteWatch fournit un second domaine : les événements issus des journaux HTTP.
 morfAnalytics doit les replacer dans leur contexte temporel et dégager les
@@ -174,7 +174,7 @@ Les conclusions doivent distinguer les faits observés, les comparaisons et les
 limites : une hausse de robots n'établit pas, à elle seule, une attaque ni un
 impact utilisateur.
 
-### Étape 3b — Métriques GitHub (premier jalon livré)
+### Étape 3b - Métriques GitHub (premier jalon livré)
 
 Les dépôts font partie de la présence en ligne. SiteWatch choisit, collecte à
 la demande, consolide et fait autorité. morfCollector archive le brut
@@ -183,7 +183,7 @@ vérité consolidée (`POST /github/ingest`). Les analyses de corrélation avec 
 article ou une release restent à venir et devront rester présentées comme des
 corrélations, jamais comme des causalités.
 
-### Étape 4 — Rapports et diffusion optionnelle
+### Étape 4 - Rapports et diffusion optionnelle
 
 Une fois les contrats et les analyses stabilisés, morfAnalytics pourra produire
 des synthèses périodiques par source (réseau, site, météo), consultables dans sa

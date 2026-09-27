@@ -220,7 +220,7 @@ Le test a confirmé plusieurs mécanismes en situation réelle :
 Comme pour les autres validations, la primo-installation a surtout eu de la valeur par les **défauts qu'elle a révélés**, chacun corrigé puis reconfronté à la situation :
 
 1. morfDashboard échouait à l'étape de configuration : son `service.py` propre n'exposait pas le verbe `config` appelé sur chaque projet lors d'un déploiement `replace`. Ajouté (délégué à son propre script d'installation) ; l'installation complète passe désormais à 9 services sur 9.
-2. morfMonitor affichait morfUpdate « introuvable » dans la vue Écosystème alors qu'il tournait : morfUpdate était déclaré dans `beacon_apps` sans émettre de heartbeat morfBeacon. Retiré de cette liste — il reste supervisé en local par systemd et `/status`.
+2. morfMonitor affichait morfUpdate « introuvable » dans la vue Écosystème alors qu'il tournait : morfUpdate était déclaré dans `beacon_apps` sans émettre de heartbeat morfBeacon. Retiré de cette liste - il reste supervisé en local par systemd et `/status`.
 3. un mot de passe SMB erroné remontait un « permission denied » générique, l'étape d'authentification étant marquée réussie à tort : `mount.cifs` n'expose pas le motif NT, seul le journal noyau le contient. Le helper privilégié de morfPhoto lit désormais `dmesg` et distingue un échec d'authentification (`STATUS_LOGON_FAILURE`) d'un refus de permission (`STATUS_ACCESS_DENIED`).
 4. les étapes de déploiement privilégiées laissaient un cache bytecode Python `root:root` dans l'arbre source de l'utilisateur, bloquant une remise à blanc lancée sans privilège. Les exécutions Python élevées tournent maintenant sans écrire ce cache, l'arbre source reste entièrement à l'utilisateur.
 

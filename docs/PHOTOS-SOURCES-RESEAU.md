@@ -208,7 +208,7 @@ un `.cred` par slug, JSON restauré si la génération est invalide.
 
 ## Les trois topologies
 
-- **Serveur Linux — automatisé.** Cas nominal décrit ci-dessus (validé
+- **Serveur Linux - automatisé.** Cas nominal décrit ci-dessus (validé
   PhotoHub Windows × morfPhoto sur Pi).
 - **Ce PC Windows.** morfPhoto et les photos sur la même machine : aucun partage.
   Déclarer le dossier local dans `roots`.
