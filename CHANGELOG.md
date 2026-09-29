@@ -6,6 +6,13 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.8.0] - 2026-09-29
+
+### Changed
+
+- **"Qui connaît la mesure la normalise" becomes the ninth principle** (it was a
+  corollary of the eighth). Principles 9 to 12 are renumbered 10 to 13.
+
 ## [1.7.0] - 2026-09-29
 
 ### Added

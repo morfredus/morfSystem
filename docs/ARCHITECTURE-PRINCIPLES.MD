@@ -148,24 +148,37 @@ Cette règle évite les incohérences.
 PhotoHub × morfPhoto et SiteWatch × morfAnalytics l'ont vérifiée sur le parc :
 voir [Validation réelle](VALIDATION-REELLE-MORFSYSTEM.md).
 
-### Corollaire : qui connaît la mesure la normalise
-
-Le composant qui connaît la réalité physique d'une mesure est responsable de sa
-normalisation. Les composants d'analyse consomment la donnée normalisée et ne
-reproduisent jamais cette connaissance.
-
-Un consommateur ne reçoit pas « une valeur brute et de quoi la corriger ». Il reçoit
-une valeur directement exploitable. Il ne cherche pas à reconstituer l'installation
-à partir de paramètres locaux, et il ne garde pas de réglage de secours pour
-corriger à sa place : si la donnée est fausse, c'est le producteur qu'on corrige.
-
-Cas fondateur (2026-09-29) : MeteoHub connaît l'altitude du hub et celle de la sonde,
-et publie la pression déjà ramenée au niveau de la mer. morfAnalytics n'a plus aucune
-altitude : déplacer la sonde se règle dans MeteoHub seul, sans toucher l'analyse.
-
 ---
 
 # Neuvième principe
+## Qui connaît la mesure la normalise
+
+Le composant qui connaît la réalité physique d'une mesure est responsable de sa
+normalisation.
+
+Les composants d'analyse consomment la donnée normalisée.
+
+Ils ne reproduisent jamais cette connaissance.
+
+Un consommateur ne reçoit pas « une valeur brute et de quoi la corriger ». Il reçoit
+une valeur directement exploitable.
+
+Il ne cherche pas à reconstituer l'installation à partir de paramètres locaux.
+
+Il ne garde pas de réglage de secours pour corriger à la place du producteur : si la
+donnée est fausse, c'est le producteur qu'on corrige.
+
+C'est le prolongement du principe précédent : la connaissance de l'installation est
+elle aussi une donnée, et elle n'a qu'un propriétaire.
+
+Cas fondateur (2026-09-29) : MeteoHub connaît l'altitude du hub et celle de la sonde,
+et publie la pression déjà ramenée au niveau de la mer. morfAnalytics ne connaît
+aucune altitude : déplacer la sonde se règle dans MeteoHub seul, sans toucher
+l'analyse.
+
+---
+
+# Dixième principe
 ## La duplication volontaire est préférable à la dépendance forcée
 
 Certaines duplications sont bénéfiques.
@@ -182,7 +195,7 @@ La duplication n'est pas un défaut lorsqu'elle répond à un objectif clairemen
 
 ---
 
-# Dixième principe
+# Onzième principe
 ## Les responsabilités survivent aux technologies
 
 Une technologie peut devenir obsolète.
@@ -195,7 +208,7 @@ Jamais des outils disponibles à un instant donné.
 
 ---
 
-# Onzième principe
+# Douzième principe
 ## La cohérence prime sur l'innovation
 
 Une nouveauté n'est intéressante que si elle améliore réellement l'écosystème.
@@ -208,7 +221,7 @@ Une solution éprouvée est souvent préférable à une solution plus récente m
 
 ---
 
-# Douzième principe
+# Treizième principe
 ## L'écosystème est le produit
 
 Chaque dépôt possède sa propre valeur.
