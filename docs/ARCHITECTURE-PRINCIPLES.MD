@@ -148,6 +148,21 @@ Cette règle évite les incohérences.
 PhotoHub × morfPhoto et SiteWatch × morfAnalytics l'ont vérifiée sur le parc :
 voir [Validation réelle](VALIDATION-REELLE-MORFSYSTEM.md).
 
+### Corollaire : qui connaît la mesure la normalise
+
+Le composant qui connaît la réalité physique d'une mesure est responsable de sa
+normalisation. Les composants d'analyse consomment la donnée normalisée et ne
+reproduisent jamais cette connaissance.
+
+Un consommateur ne reçoit pas « une valeur brute et de quoi la corriger ». Il reçoit
+une valeur directement exploitable. Il ne cherche pas à reconstituer l'installation
+à partir de paramètres locaux, et il ne garde pas de réglage de secours pour
+corriger à sa place : si la donnée est fausse, c'est le producteur qu'on corrige.
+
+Cas fondateur (2026-09-29) : MeteoHub connaît l'altitude du hub et celle de la sonde,
+et publie la pression déjà ramenée au niveau de la mer. morfAnalytics n'a plus aucune
+altitude : déplacer la sonde se règle dans MeteoHub seul, sans toucher l'analyse.
+
 ---
 
 # Neuvième principe

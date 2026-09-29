@@ -6,6 +6,16 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.7.0] - 2026-09-29
+
+### Added
+
+- **Corollary to the eighth principle: whoever knows the measurement normalises
+  it.** The component that knows the physical reality of a measurement publishes it
+  normalised; analysis components consume it and never rebuild that knowledge nor
+  keep a local fallback correction. Founding case: MeteoHub publishes sea-level
+  pressure with each sensor's altitude; morfAnalytics holds no altitude anymore.
+
 ## [1.6.2] - 2026-09-27
 
 ### Fixed
