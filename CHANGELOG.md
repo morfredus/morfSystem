@@ -6,6 +6,13 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.8.1] - 2026-10-15
+
+### Changed
+
+- CONTRAT-ACTIVITE.md: lists the services that declare `activity/1` today and the
+  `IMetricsProvider::activity()` hook of morfBeacon 0.8.0 for beacon-based apps.
+
 ## [1.8.0] - 2026-09-29
 
 ### Changed

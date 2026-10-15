@@ -133,7 +133,25 @@ Content-Type: application/json
   ne recopie pas l'historique.
 - Le temps réel (`/status`) et l'historique (`POST`) ne se mélangent jamais.
 
-## 7. Résumé
+## 7. Qui déclare une activité aujourd'hui
+
+| Service | Type | Ce qui est déclaré |
+|---|---|---|
+| morfPhoto | `indexation` | passe d'indexation (fichiers vus / total, dossier courant) |
+| morfCollector | `collecte` | sources en cours de collecte |
+| morfSync | `synchronisation` | rafale de requêtes de synchro (le hub est passif) |
+| morfAnalytics | `collecte` | collecte des mesures MeteoHub IN/OUT et des prévisions |
+| SiteWatch | `synchronisation`, `analyse`, `traitement` | travail d'arrière-plan en cours |
+
+Les applications qui exposent leur `/status` via morfBeacon (SiteWatch, ComponentHub,
+PhotoHub, LanAtlas...) déclarent leur activité en surchargeant
+`IMetricsProvider::activity()` (ou en passant un callback à `FunctionMetricsProvider`),
+disponible depuis morfBeacon 0.8.0. Les copies vendorées doivent être resynchronisées.
+
+Un `/status` qui répond lentement rend l'activité invisible : morfMonitor abandonne après
+3 s. Le `/status` d'un service ne doit donc jamais faire de requête coûteuse.
+
+## 8. Résumé
 
 - Un service ne dit plus seulement **qu'il travaille** ; quand il le sait, il dit
   **ce qu'il fait**, via `activity` dans `/status`.
