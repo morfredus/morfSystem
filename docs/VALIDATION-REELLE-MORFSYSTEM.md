@@ -162,6 +162,8 @@ PhotoHub y fonctionne comme client réel de morfPhoto. Il ne se contente pas d'a
 
 Un smoke test de PhotoHub a également révélé qu'un simple dossier de build n'était pas autonome sous Windows. La distribution a été corrigée autour de `windeployqt` et du déploiement MinGW. Là encore, la validation a porté sur l'exécutable utilisable, pas uniquement sur la cible compilée.
 
+**Mise à jour du 2026-11-17.** L'environnement MSYS2 du poste principal est passé de MINGW64 à UCRT64 (MINGW64 est déprécié), et toute la chaîne C++ du parc se compile désormais ainsi. Le mélange de deux environnements dans un même build a produit trois échecs réels, tous corrigés dans `morf build` et dans les scripts de déploiement : un `rcc` qui plante (`0xc0000409`) quand le Qt officiel est associé à un compilateur UCRT64, des en-têtes de l'autre runtime repris depuis un cache CMake périmé, et un exécutable qui ne démarre pas (« point d'entrée introuvable ») quand un dossier de build garde la `libstdc++` d'un autre environnement. Le Qt officiel n'est plus la référence du parc : voir `ENVIRONNEMENT-DEV` de morfTools.
+
 ### Windows 10 dans un environnement neuf
 
 L'ASUS a servi de test de reconstruction et non de prolongement silencieux du Legion. Qt 6.11.1 y a été installé dans un environnement officiel Qt, avec ses propres outils MinGW, Ninja et CMake. Les problèmes de preset, de chemins, de cache CMake et de dépendances ont été rencontrés et consignés au lieu d'être masqués par les habitudes du poste principal.

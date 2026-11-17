@@ -6,6 +6,12 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.8.2] - 2026-11-18
+
+### Changed
+
+- `docs/VALIDATION-REELLE-MORFSYSTEM.md`: note on the move of the Windows C++ toolchain to MSYS2 UCRT64 and on the three failures caused by mixing environments.
+
 ## [1.8.1] - 2026-10-15
 
 ### Changed
