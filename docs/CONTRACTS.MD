@@ -182,6 +182,10 @@ contrat écrit :
 - [Contrat d'activité en cours (`activity/1`)](CONTRAT-ACTIVITE.md) - comment un
   service déclare **ce qu'il est en train de faire** (indexation, compilation,
   collecte...), lu en temps réel par morfMonitor et historisé par morfAnalytics.
+- [Contrat bibliothèque photo (`morfphoto-library/1`)](CONTRAT-BIBLIOTHEQUE-PHOTO.md) -
+  comment morfPhoto expose la couche d'organisation et d'édition posée par les logiciels
+  photo (note, rejet, étiquettes, mots-clés, retouchée, versions), à partir de sidecars
+  de plusieurs logiciels. Proposé, pas encore implémenté.
 
 ---
 

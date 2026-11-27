@@ -6,6 +6,48 @@ et du [versionnage sémantique](https://semver.org/lang/fr/).
 morfSystem est un dépôt de **documentation** : ses versions décrivent l'évolution
 de la doc de référence, pas d'un logiciel.
 
+## [1.9.6] - 2026-11-27
+
+### Changed
+
+- `docs/CONTRAT-BIBLIOTHEQUE-PHOTO.md`: `rejected` joins `edited` as an exception to the per-field priority ("one provider is enough"), and Lightcraft's `reject` flag is read (morfPhoto 0.24.0).
+
+## [1.9.5] - 2026-11-27
+
+### Changed
+
+- `docs/CONTRAT-BIBLIOTHEQUE-PHOTO.md`: the `picked` field and filter (Lightcraft's "pick" flag, compatible addition) and the `lightcraft` provider, delivered by morfPhoto 0.23.0, with what it reads (`lc:flag` `pick` and `none`) and what it leaves unknown (other values, `lc:settings`).
+
+## [1.9.4] - 2026-11-27
+
+### Changed
+
+- `docs/CONTRAT-BIBLIOTHEQUE-PHOTO.md`: the `dxo` provider is marked as delivered by morfPhoto 0.22.0, with what it reads (rating, keywords, position, copyright) and what it leaves unknown (edited, virtual copies).
+
+## [1.9.3] - 2026-11-27
+
+### Changed
+
+- `docs/CONTRAT-BIBLIOTHEQUE-PHOTO.md`: `with` of the analysis export is a comma separated list and the `gps` option (latitude, longitude, provenance; file first, sidecar as a fallback) is documented as delivered by morfPhoto 0.21.0.
+
+## [1.9.2] - 2026-11-27
+
+### Changed
+
+- `docs/CONTRAT-BIBLIOTHEQUE-PHOTO.md`: cursor pagination and `ETag`/`304` are marked as delivered by morfPhoto 0.20.0; only the proprietary providers remain to do.
+
+## [1.9.1] - 2026-11-27
+
+### Changed
+
+- `docs/CONTRAT-BIBLIOTHEQUE-PHOTO.md`: status updated now that morfPhoto 0.19.0 implements the contract (providers `darktable` and `xmp`, embedded XMP, routes, filters, facets, `with=library`). Cursor pagination, `ETag`/`304` and the proprietary providers are listed as still to do. Keyword facets are decided as a flat list of full paths.
+
+## [1.9.0] - 2026-11-27
+
+### Added
+
+- `docs/CONTRAT-BIBLIOTHEQUE-PHOTO.md`: the `morfphoto-library/1` contract (proposed, not implemented). It defines the photo library layer next to the EXIF index: the authority rule (the image file owns the shot, sidecars own the processing), a common model with versions and unknown values kept as `null`, a provider interface for the sidecars of several programs (darktable, generic XMP, RawTherapee, DxO, Capture One), per-field resolution by priority, the read-only routes under `/api/v1/library`, the filters, the `with=library` option of the analysis export and the `photo_library` capability. Linked from `CONTRACTS.md`.
+
 ## [1.8.2] - 2026-11-18
 
 ### Changed
